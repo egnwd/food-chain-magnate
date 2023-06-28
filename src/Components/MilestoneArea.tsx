@@ -1,64 +1,50 @@
-import React, { useState } from 'react';
-import NumberButton from './NumberButton';
+import React, { useContext, useState } from 'react';
 import ToggleButton from './ToggleButton';
+import { HouseDemandContext } from './HouseDemandContext';
 
 type MilestoneAreaProps = {};
 
 const MilestoneArea: React.FC<MilestoneAreaProps> = () => {
-    const [hasDrinkBonus, setHasDrinkBonus] = useState(false);
-    const [hasBurgerBonus, setHasBurgerBonus] = useState(false);
-    const [hasPizzaBonus, setHasPizzaBonus] = useState(false);
-    const [hasPermenantDiscount, setHasPermenantDiscount] = useState(false);
-    const [hasWaitressBonus, setHasWaitressBonus] = useState(false);
+  const { milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleDrinkBonus = () => {
-    setHasDrinkBonus(!hasDrinkBonus);
+    setMilestones({...milestones, hasDrinkBonus: !milestones.hasDrinkBonus});
   };
 
   const handleBurgerBonus = () => {
-    setHasBurgerBonus(!hasBurgerBonus);
+    setMilestones({...milestones, hasBurgerBonus: !milestones.hasBurgerBonus});
   };
 
   const handlePizzaBonus = () => {
-    setHasPizzaBonus(!hasPizzaBonus);
+    setMilestones({...milestones, hasPizzaBonus: !milestones.hasPizzaBonus});
   };
 
-  const handlePermenantDiscount = () => {
-    setHasPermenantDiscount(!hasPermenantDiscount);
+  const handlePermanentDiscount = () => {
+    setMilestones({...milestones, hasPermanentDiscount: !milestones.hasPermanentDiscount});
   };
-
-  const handleWaitressBonus = () => {
-    setHasWaitressBonus(!hasWaitressBonus);
-  };
-
 
   return (
     <div>
       <h1>Milestones</h1>
       <ToggleButton
         label="+$5 on Drinks"
-        active={hasDrinkBonus}
+        active={milestones.hasDrinkBonus}
         onClick={handleDrinkBonus}
       />
       <ToggleButton
         label="+$5 on Burger"
-        active={hasBurgerBonus}
+        active={milestones.hasBurgerBonus}
         onClick={handleBurgerBonus}
       />
       <ToggleButton
         label="+$5 on Pizza"
-        active={hasPizzaBonus}
+        active={milestones.hasPizzaBonus}
         onClick={handlePizzaBonus}
       />
       <ToggleButton
         label="- $1"
-        active={hasPermenantDiscount}
-        onClick={handlePermenantDiscount}
-      />
-      <ToggleButton
-        label="+$2 per Waitress"
-        active={hasWaitressBonus}
-        onClick={handleWaitressBonus}
+        active={milestones.hasPermanentDiscount}
+        onClick={handlePermanentDiscount}
       />
     </div>
   );

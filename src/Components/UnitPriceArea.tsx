@@ -1,77 +1,68 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import NumberButton from './NumberButton';
+import { HouseDemandContext } from './HouseDemandContext';
 
 type UnitPriceAreaProps = {};
 
 const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
-  const [discountManagers, setDiscountManagers] = useState(0);
-  const [luxuryManagers, setLuxuryManagers] = useState(0);
-  const [discountDirectors, setDiscountDirectors] = useState(0);
-  const [unitPrice, setUnitPrice] = useState(10);
+  const { unitPrice, setUnitPrice } = useContext(HouseDemandContext);
 
   const handleAddDiscountManager = () => {
-    if (unitPrice - 1 <= 0) {
+    if (unitPrice.unitPrice - 1 <= 0) {
       return;
     }
-    setUnitPrice(unitPrice - 1);
-    setDiscountManagers(discountManagers + 1);
+    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 1, discountManagers: unitPrice.discountManagers + 1 });
   };
 
   const handleRemoveDiscountManager = () => {
-    if (discountManagers > 0) {
-        setUnitPrice(unitPrice + 1);
-        setDiscountManagers(discountManagers - 1);
+    if (unitPrice.discountManagers > 0) {
+      setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + 1, discountManagers: unitPrice.discountManagers - 1 });
     }
   };
 
   const handleAddDiscountDirector = () => {
-    if (unitPrice - 3 <= 0) {
+    if (unitPrice.unitPrice - 3 <= 0) {
       return;
     }
-    setUnitPrice(unitPrice - 3);
-    setDiscountDirectors(discountDirectors + 1);
+    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 3, discountDirectors: unitPrice.discountDirectors + 1 });
   };
 
   const handleRemoveDiscountDirector = () => {
-    if (discountDirectors > 0) {
-        setUnitPrice(unitPrice + 3);
-        setDiscountDirectors(discountDirectors - 1);
-    }  
+    if (unitPrice.discountDirectors > 0) {
+      setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + 3, discountDirectors: unitPrice.discountDirectors - 1 });
+    }
   };
 
   const handleAddLuxuryManager = () => {
-    setUnitPrice(unitPrice + 10);
-    setLuxuryManagers(luxuryManagers + 1);
+    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + 10, luxuryManagers: unitPrice.luxuryManagers + 1 });
   };
 
   const handleRemoveLuxuryManager = () => {
-    if (unitPrice - 10 <= 0) {
+    if (unitPrice.unitPrice - 10 <= 0 || unitPrice.luxuryManagers <= 0) {
       return;
     }
-    if (luxuryManagers > 0) {
-      setUnitPrice(unitPrice - 10);
-      setLuxuryManagers(luxuryManagers - 1);
-    }
+
+    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 10, luxuryManagers: unitPrice.luxuryManagers - 1 });
   };
 
   return (
     <div>
       <h1>Unit Price</h1>
       <NumberButton
-          label="- $1"
-          onIncrement={handleAddDiscountManager}
-          onDecrement={handleRemoveDiscountManager}
+        label="- $1"
+        onIncrement={handleAddDiscountManager}
+        onDecrement={handleRemoveDiscountManager}
       />
       <NumberButton
-          label="- $3"
-          onIncrement={handleAddDiscountDirector}
-          onDecrement={handleRemoveDiscountDirector}
+        label="- $3"
+        onIncrement={handleAddDiscountDirector}
+        onDecrement={handleRemoveDiscountDirector}
       />
-      <div>${unitPrice}</div>
+      <div>${unitPrice.unitPrice}</div>
       <NumberButton
-          label="+ $10"
-          onIncrement={handleAddLuxuryManager}
-          onDecrement={handleRemoveLuxuryManager}
+        label="+ $10"
+        onIncrement={handleAddLuxuryManager}
+        onDecrement={handleRemoveLuxuryManager}
       />
     </div>
   );
