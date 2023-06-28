@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import UnitPriceArea from './Components/UnitPriceArea';
 import MilestoneArea from './Components/MilestoneArea';
+import DemandArea from './Components/DemandArea';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <header className="App-header">
         <UnitPriceArea />
         <MilestoneArea />
+        <DemandArea />
       </header>
     </div>
   );
