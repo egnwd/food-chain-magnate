@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { HouseDemand, HouseDemandContext } from './HouseDemandContext';
 
-function CalculatePrice({milestones, demand, unitPrice} : HouseDemand): number
+function CalculatePrice({milestones, demand, unitPrice, hasGarden} : HouseDemand): number
 {
     let numItems = demand.total;
     let basePrice = numItems * (unitPrice.unitPrice + (milestones.hasPermanentDiscount ? -1 : 0));
+    let housePrice = basePrice * (hasGarden ? 2 : 1);
     let drinkBonus = demand.drinks * (milestones.hasDrinkBonus ? 5 : 0);
     let burgerBonus = demand.burgers * (milestones.hasBurgerBonus ? 5 : 0);
     let pizzaBonus = demand.pizza * (milestones.hasPizzaBonus ? 5 : 0);
-    return basePrice + drinkBonus + burgerBonus + pizzaBonus;
+    return housePrice + drinkBonus + burgerBonus + pizzaBonus;
 }
 
 type PriceProps = {};

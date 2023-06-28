@@ -5,6 +5,7 @@ import MilestoneArea from './Components/MilestoneArea';
 import DemandArea from './Components/DemandArea';
 import { HouseDemandProvider } from './Components/HouseDemandContext';
 import Price from './Components/Price';
+import HouseArea from './Components/HouseArea';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <HouseDemandProvider>
+          <HouseArea />
           <UnitPriceArea />
           <MilestoneArea />
           <DemandArea />
