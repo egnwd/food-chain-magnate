@@ -19,6 +19,7 @@ blockquote,
 dl,
 dd {
   margin: 0;
+  color: rgb(42, 39, 39);
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -113,15 +114,17 @@ h1 {
   -webkit-text-fill-color: rgb(192, 55, 51);
   -moz-text-stroke-color: rgb(253, 241, 217);
   -webkit-text-stroke-color: rgb(253, 241, 217);
-  -moz-text-stroke-width: 0.1px;  
-  -webkit-text-stroke-width: 0.1px;
+  -moz-text-stroke-width: 2px;  
+  -webkit-text-stroke-width: 2px;
   paint-order: stroke fill;
   text-shadow:
     -1px -1px 0 rgb(42, 39, 39),
     -1px 1px 0 rgb(42, 39, 39),
     1px -1px 0 rgb(42, 39, 39),
     1px 1px 0 rgb(42, 39, 39),
-    2px 2px 0 rgb(42, 39, 39);
+    2px 2px 0 rgb(42, 39, 39),
+    3px 3px 0 rgb(42, 39, 39),
+    4px 4px 0 rgb(42, 39, 39);
 }
 
 h2 {
@@ -206,6 +209,7 @@ button:focus {
   border: none;
   cursor: pointer;
   background: none;
+  color: rgb(42, 39, 39);
 }
 
 .price {
