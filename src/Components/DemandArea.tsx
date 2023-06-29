@@ -2,11 +2,15 @@ import React, { useContext, useState } from 'react';
 import NumberButton from './NumberButton';
 import { HouseDemandContext } from './HouseDemandContext';
 import Title from './Title';
+import ToggleButton from './ToggleButton';
+import SodaIcon from '../Icons/SodaIcon';
+import BurgerIcon from '../Icons/BurgerIcon';
+import PizzaIcon from '../Icons/PizzaIcon';
 
 type DemandAreaProps = {};
 
 const DemandArea: React.FC<DemandAreaProps> = () => {
-  const { demand, setDemand } = useContext(HouseDemandContext);
+  const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDrink = () => {
     if (demand.total >= 5) {
@@ -50,31 +54,61 @@ const DemandArea: React.FC<DemandAreaProps> = () => {
     setDemand({ ...demand, pizza: demand.pizza - 1, total: demand.total - 1 });
   };
 
+  const handleDrinkBonus = () => {
+    setMilestones({ ...milestones, hasDrinkBonus: !milestones.hasDrinkBonus });
+  };
+
+  const handleBurgerBonus = () => {
+    setMilestones({ ...milestones, hasBurgerBonus: !milestones.hasBurgerBonus });
+  };
+
+  const handlePizzaBonus = () => {
+    setMilestones({ ...milestones, hasPizzaBonus: !milestones.hasPizzaBonus });
+  };
+
   return (
     <section>
       <Title>Demand</Title>
       <div className='menuItem'>
-        <span>Soda/Beer/Lemonade</span>
+        <SodaIcon />
         <NumberButton
           label={demand.drinks.toString()}
           onIncrement={handleAddDrink}
           onDecrement={handleRemoveDrink}
         />
+        <ToggleButton
+          label="+$5 on Drinks"
+          active={milestones.hasDrinkBonus}
+          onClick={handleDrinkBonus}
+        />
       </div>
       <div className='menuItem'>
-        <span>Burgers</span>
+        <BurgerIcon />
+
         <NumberButton
           label={demand.burgers.toString()}
           onIncrement={handleAddBurgers}
           onDecrement={handleRemoveBurgers}
         />
+        <ToggleButton
+          label="+$5 on Burger"
+          active={milestones.hasBurgerBonus}
+          onClick={handleBurgerBonus}
+        />
+
       </div>
       <div className='menuItem'>
-        <span>Pizza</span>
+        <PizzaIcon />
+
         <NumberButton
           label={demand.pizza.toString()}
           onIncrement={handleAddPizza}
           onDecrement={handleRemovePizza}
+        />
+        <ToggleButton
+          label="+$5 on Pizza"
+          active={milestones.hasPizzaBonus}
+          onClick={handlePizzaBonus}
         />
       </div>
 

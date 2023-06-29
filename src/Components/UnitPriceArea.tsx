@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react';
 import NumberButton from './NumberButton';
 import { HouseDemandContext } from './HouseDemandContext';
 import Title from './Title';
+import ToggleButton from './ToggleButton';
 
 type UnitPriceAreaProps = {};
 
 const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
-  const { unitPrice, setUnitPrice } = useContext(HouseDemandContext);
+  const { unitPrice, setUnitPrice, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDiscountManager = () => {
     if (unitPrice.unitPrice - 1 <= 0) {
@@ -46,6 +47,10 @@ const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
     setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 10, luxuryManagers: unitPrice.luxuryManagers - 1 });
   };
 
+  const handlePermanentDiscount = () => {
+    setMilestones({ ...milestones, hasPermanentDiscount: !milestones.hasPermanentDiscount });
+  };
+
   return (
     <section>
       <Title>Unit Price</Title>
@@ -67,13 +72,18 @@ const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
           onIncrement={handleAddDiscountDirector}
           onDecrement={handleRemoveDiscountDirector}
         />
-        <div style={{minWidth: '3em', fontSize: '2em', fontWeight: 700}}>${unitPrice.unitPrice}</div>
+        <div style={{ minWidth: '3em', fontSize: '2em', fontWeight: 700 }}>${unitPrice.unitPrice}</div>
         <NumberButton
           label="+ $10"
           onIncrement={handleAddLuxuryManager}
           onDecrement={handleRemoveLuxuryManager}
         />
       </div>
+      <ToggleButton
+        label="- $1 Sale!"
+        active={milestones.hasPermanentDiscount}
+        onClick={handlePermanentDiscount}
+      />
     </section>
   );
 };

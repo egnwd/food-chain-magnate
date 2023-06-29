@@ -1,25 +1,40 @@
-import React, {createContext} from 'react';
 import './App.css';
 import UnitPriceArea from './Components/UnitPriceArea';
-import MilestoneArea from './Components/MilestoneArea';
 import DemandArea from './Components/DemandArea';
 import { HouseDemandProvider } from './Components/HouseDemandContext';
 import Price from './Components/Price';
 import HouseArea from './Components/HouseArea';
+import { ThemeProvider, createTheme } from '@mui/material';
+
+const theme = createTheme({
+  components: {
+    MuiIcon: {
+      styleOverrides: {
+        root: {
+          boxSizing: 'content-box',
+          padding: 3,
+          fontSize: '1.125rem',
+        },
+      },
+    },
+  },
+});
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <HouseDemandProvider>
-          <HouseArea />
-          <UnitPriceArea />
-          <MilestoneArea />
-          <DemandArea />
-          <div style={{height: '5em'}}/>
-          <Price />
-        </HouseDemandProvider>
+        <ThemeProvider theme={theme}>
+          <HouseDemandProvider>
+            <HouseArea />
+            <UnitPriceArea />
+            <DemandArea />
+            <div style={{ height: '5em' }} />
+            <Price />
+          </HouseDemandProvider>
+        </ThemeProvider>
+
       </header>
     </div>
   );

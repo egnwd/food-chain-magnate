@@ -44,3 +44,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+Pizza by Made from <a href="https://thenounproject.com/browse/icons/term/pizza/" target="_blank" title="Pizza Icons">Noun Project</a>
+
+Cheeseburger by Made from <a href="https://thenounproject.com/browse/icons/term/cheeseburger/" target="_blank" title="cheeseburger Icons">Noun Project</a>
+
+Fizzy drink by Made from <a href="https://thenounproject.com/browse/icons/term/fizzy-drink/" target="_blank" title="fizzy drink Icons">Noun Project</a>
