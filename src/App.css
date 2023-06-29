@@ -113,10 +113,13 @@ h1 {
   -webkit-text-fill-color: rgb(192, 55, 51);
   -moz-text-stroke-color: rgb(253, 241, 217);
   -webkit-text-stroke-color: rgb(253, 241, 217);
-  -moz-text-stroke-width: 0.2px;  
-  -webkit-text-stroke-width: 0.2px;
+  -moz-text-stroke-width: 0.1px;  
+  -webkit-text-stroke-width: 0.1px;
   paint-order: stroke fill;
   text-shadow:
+    -1px -1px 0 rgb(42, 39, 39),
+    -1px 1px 0 rgb(42, 39, 39),
+    1px -1px 0 rgb(42, 39, 39),
     1px 1px 0 rgb(42, 39, 39),
     2px 2px 0 rgb(42, 39, 39);
 }
