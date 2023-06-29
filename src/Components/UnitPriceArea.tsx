@@ -48,6 +48,10 @@ const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
   };
 
   const handlePermanentDiscount = () => {
+    if (unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1)  <= 0) {
+      return;
+    }
+    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) });
     setMilestones({ ...milestones, hasPermanentDiscount: !milestones.hasPermanentDiscount });
   };
 
