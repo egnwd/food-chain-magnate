@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import NumberButton from './NumberButton';
 import { HouseDemandContext } from './HouseDemandContext';
+import Title from './Title';
 
 type UnitPriceAreaProps = {};
 
@@ -46,25 +47,34 @@ const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
   };
 
   return (
-    <div>
-      <h1>Unit Price</h1>
-      <NumberButton
-        label="- $1"
-        onIncrement={handleAddDiscountManager}
-        onDecrement={handleRemoveDiscountManager}
-      />
-      <NumberButton
-        label="- $3"
-        onIncrement={handleAddDiscountDirector}
-        onDecrement={handleRemoveDiscountDirector}
-      />
-      <div>${unitPrice.unitPrice}</div>
-      <NumberButton
-        label="+ $10"
-        onIncrement={handleAddLuxuryManager}
-        onDecrement={handleRemoveLuxuryManager}
-      />
-    </div>
+    <section>
+      <Title>Unit Price</Title>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          minWidth: '100vw'
+        }}>
+        <NumberButton
+          label="- $1"
+          onIncrement={handleAddDiscountManager}
+          onDecrement={handleRemoveDiscountManager}
+        />
+        <NumberButton
+          label="- $3"
+          onIncrement={handleAddDiscountDirector}
+          onDecrement={handleRemoveDiscountDirector}
+        />
+        <div style={{minWidth: '3em', fontSize: '2em', fontWeight: 700}}>${unitPrice.unitPrice}</div>
+        <NumberButton
+          label="+ $10"
+          onIncrement={handleAddLuxuryManager}
+          onDecrement={handleRemoveLuxuryManager}
+        />
+      </div>
+    </section>
   );
 };
 

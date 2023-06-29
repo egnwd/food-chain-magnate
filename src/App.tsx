@@ -17,6 +17,7 @@ function App() {
           <UnitPriceArea />
           <MilestoneArea />
           <DemandArea />
+          <div style={{height: '5em'}}/>
           <Price />
         </HouseDemandProvider>
       </header>

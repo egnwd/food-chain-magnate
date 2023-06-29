@@ -18,7 +18,7 @@ const Price: React.FC<PriceProps> = () => {
   const house = useContext(HouseDemandContext);
 
   return (
-    <div>
+    <div className='price'>
       <h1>${CalculatePrice(house)}</h1>
     </div>
   );

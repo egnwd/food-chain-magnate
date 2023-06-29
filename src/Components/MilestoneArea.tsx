@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import ToggleButton from './ToggleButton';
 import { HouseDemandContext } from './HouseDemandContext';
+import Title from './Title';
 
 type MilestoneAreaProps = {};
 
@@ -8,24 +9,31 @@ const MilestoneArea: React.FC<MilestoneAreaProps> = () => {
   const { milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleDrinkBonus = () => {
-    setMilestones({...milestones, hasDrinkBonus: !milestones.hasDrinkBonus});
+    setMilestones({ ...milestones, hasDrinkBonus: !milestones.hasDrinkBonus });
   };
 
   const handleBurgerBonus = () => {
-    setMilestones({...milestones, hasBurgerBonus: !milestones.hasBurgerBonus});
+    setMilestones({ ...milestones, hasBurgerBonus: !milestones.hasBurgerBonus });
   };
 
   const handlePizzaBonus = () => {
-    setMilestones({...milestones, hasPizzaBonus: !milestones.hasPizzaBonus});
+    setMilestones({ ...milestones, hasPizzaBonus: !milestones.hasPizzaBonus });
   };
 
   const handlePermanentDiscount = () => {
-    setMilestones({...milestones, hasPermanentDiscount: !milestones.hasPermanentDiscount});
+    setMilestones({ ...milestones, hasPermanentDiscount: !milestones.hasPermanentDiscount });
   };
 
   return (
-    <div>
-      <h1>Milestones</h1>
+    <section>
+      <Title>Milestones</Title>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+          minWidth: '100vw'
+        }}>
       <ToggleButton
         label="+$5 on Drinks"
         active={milestones.hasDrinkBonus}
@@ -42,11 +50,11 @@ const MilestoneArea: React.FC<MilestoneAreaProps> = () => {
         onClick={handlePizzaBonus}
       />
       <ToggleButton
-        label="- $1"
+        label="- $1 Sale!"
         active={milestones.hasPermanentDiscount}
         onClick={handlePermanentDiscount}
-      />
-    </div>
+      /></div>
+    </section>
   );
 };
 

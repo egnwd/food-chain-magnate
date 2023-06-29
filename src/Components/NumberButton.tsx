@@ -12,12 +12,10 @@ type NumberButtonProps = {
     onDecrement,
   }) => {
     return (
-      <div>
-        <div>
-          <button onClick={onIncrement}>▲</button>
-          <span>{label}</span>
-          <button onClick={onDecrement}>▼</button>
-        </div>
+      <div className='numberCruncher'>
+        <button onClick={onIncrement}>▲</button>
+        <span>{label}</span>
+        <button onClick={onDecrement}>▼</button>
       </div>
     );
   };
