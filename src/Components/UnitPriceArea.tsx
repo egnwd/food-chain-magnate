@@ -87,6 +87,7 @@ const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
         label="- $1 Sale!"
         active={milestones.hasPermanentDiscount}
         onClick={handlePermanentDiscount}
+        permanentDiscount={true}
       />
     </section>
   );
