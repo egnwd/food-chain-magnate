@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ToggleButton from './ToggleButton';
+import { ColorsToggleButton } from './ToggleButton';
 import { HouseDemandContext } from './HouseDemandContext';
 import Title from './Title';
 
@@ -29,6 +30,7 @@ const RevenueBonusArea: React.FC<RevenueBonusProps> = () => {
           label="CFO"
           active={hasCFO}
           onClick={handleHasCFO}
+          activeColor={ColorsToggleButton.purple}
         />
       </div>
     </section>

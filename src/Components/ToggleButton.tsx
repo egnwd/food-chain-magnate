@@ -4,16 +4,15 @@ type ToggleButtonProps = {
   label: string;
   active: boolean;
   onClick: () => void;
-  permanentDiscount?: boolean;
+  activeColor?: string;
 };
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ 
   label,
   active,
   onClick,
-  permanentDiscount = false,
+  activeColor = 'rgb(141, 194, 199)',
 }) => {
-  const activeColor = permanentDiscount ? 'rgb(246, 170, 147)' : 'rgb(141, 194, 199)';
   const inactiveColor = 'rgb(216, 217, 204)';
   const textColor = 'rgb(60, 64, 63)';
   return (
@@ -30,4 +29,10 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   );
 };
 
+const ColorsToggleButton = {
+  palePink: 'rgb(246, 170, 147)',
+  purple: 'rgb(161, 122, 211)',
+};
+
 export default ToggleButton;
+export { ColorsToggleButton };

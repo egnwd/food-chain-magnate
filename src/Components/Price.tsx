@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { HouseDemand, HouseDemandContext } from './HouseDemandContext';
 
 function CalculatePrice({milestones, demand, unitPrice, hasGarden, hasCFO} : HouseDemand): number
