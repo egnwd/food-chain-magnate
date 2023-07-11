@@ -24,6 +24,8 @@ type Demand = {
 export type HouseDemand = {
   hasGarden: boolean;
   setHasGarden: React.Dispatch<React.SetStateAction<boolean>>;
+  hasCFO: boolean;
+  setHasCFO: React.Dispatch<React.SetStateAction<boolean>>;
   milestones: Milestones;
   setMilestones: React.Dispatch<React.SetStateAction<Milestones>>;
   unitPrice: UnitPrice;
@@ -34,6 +36,7 @@ export type HouseDemand = {
 
 export const HouseDemandContext = createContext<HouseDemand>({
   hasGarden: false,
+  hasCFO: false,
   milestones: {
     hasDrinkBonus: false,
     hasBurgerBonus: false,
@@ -53,6 +56,7 @@ export const HouseDemandContext = createContext<HouseDemand>({
     total: 0,
   },
   setHasGarden: () => { },
+  setHasCFO: () => { },
   setMilestones: () => { },
   setUnitPrice: () => { },
   setDemand: () => { },
@@ -85,9 +89,22 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
   });
 
   const [hasGarden, setHasGarden] = useState<boolean>(false);
+  
+  const [hasCFO, setHasCFO] = useState<boolean>(false);
 
   return (
-    <HouseDemandContext.Provider value={{ milestones, setMilestones, unitPrice, setUnitPrice, demand, setDemand, hasGarden, setHasGarden }}>
+    <HouseDemandContext.Provider value={{ 
+      milestones, 
+      setMilestones, 
+      unitPrice, 
+      setUnitPrice, 
+      demand, 
+      setDemand, 
+      hasGarden, 
+      setHasGarden,
+      hasCFO,
+      setHasCFO,
+      }}>
       {children}
     </HouseDemandContext.Provider>
   );
