@@ -3,7 +3,7 @@ import UnitPriceArea from './Components/UnitPriceArea';
 import DemandArea from './Components/DemandArea';
 import { HouseDemandProvider } from './Components/HouseDemandContext';
 import Price from './Components/Price';
-import HouseArea from './Components/HouseArea';
+import RevenueBonusArea from './Components/RevenueBonusArea';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
@@ -27,9 +27,9 @@ function App() {
       <header className="App-header">
         <ThemeProvider theme={theme}>
           <HouseDemandProvider>
-            <HouseArea />
             <UnitPriceArea />
             <DemandArea />
+            <RevenueBonusArea />
             <div style={{ height: '5em' }} />
             <Price />
           </HouseDemandProvider>
