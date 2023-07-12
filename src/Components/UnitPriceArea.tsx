@@ -3,7 +3,7 @@ import NumberButton from './NumberButton';
 import { HouseDemandContext } from './HouseDemandContext';
 import Title from './Title';
 import ToggleButton from './ToggleButton';
-import { ColorsToggleButton } from './ToggleButton';
+import FoodChainMagnatePalette from './ColorPalette';
 
 type UnitPriceAreaProps = {};
 
@@ -88,7 +88,7 @@ const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
         label="- $1 Sale!"
         active={milestones.hasPermanentDiscount}
         onClick={handlePermanentDiscount}
-        activeColor={ColorsToggleButton.palePink}
+        activeColor={FoodChainMagnatePalette.discounters}
       />
     </section>
   );
