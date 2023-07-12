@@ -75,6 +75,7 @@ const DemandArea: React.FC<DemandAreaProps> = () => {
           label={demand.drinks.toString()}
           onIncrement={handleAddDrink}
           onDecrement={handleRemoveDrink}
+          horizontal
         />
         <ToggleButton
           label="+$5 on Drinks"
@@ -89,6 +90,7 @@ const DemandArea: React.FC<DemandAreaProps> = () => {
           label={demand.burgers.toString()}
           onIncrement={handleAddBurgers}
           onDecrement={handleRemoveBurgers}
+          horizontal
         />
         <ToggleButton
           label="+$5 on Burger"
@@ -104,6 +106,7 @@ const DemandArea: React.FC<DemandAreaProps> = () => {
           label={demand.pizza.toString()}
           onIncrement={handleAddPizza}
           onDecrement={handleRemovePizza}
+          horizontal
         />
         <ToggleButton
           label="+$5 on Pizza"
