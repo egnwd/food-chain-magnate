@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/food-chain-magnate/static/css/main.21caf27b.css",
-    "main.js": "/food-chain-magnate/static/js/main.bb56effb.js",
+    "main.js": "/food-chain-magnate/static/js/main.a57244d2.js",
     "static/js/787.f7014afa.chunk.js": "/food-chain-magnate/static/js/787.f7014afa.chunk.js",
     "index.html": "/food-chain-magnate/index.html",
     "main.21caf27b.css.map": "/food-chain-magnate/static/css/main.21caf27b.css.map",
-    "main.bb56effb.js.map": "/food-chain-magnate/static/js/main.bb56effb.js.map",
+    "main.a57244d2.js.map": "/food-chain-magnate/static/js/main.a57244d2.js.map",
     "787.f7014afa.chunk.js.map": "/food-chain-magnate/static/js/787.f7014afa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21caf27b.css",
-    "static/js/main.bb56effb.js"
+    "static/js/main.a57244d2.js"
   ]
 }
