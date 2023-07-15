@@ -4,9 +4,7 @@ import FoodChainMagnatePalette from './ColorPalette';
 import { HouseDemandContext } from './HouseDemandContext';
 import Title from './Title';
 
-type RevenueBonusProps = {};
-
-const RevenueBonusArea: React.FC<RevenueBonusProps> = () => {
+const RevenueBonusArea: React.FC = () => {
   const { hasGarden, setHasGarden, hasCFO, setHasCFO, } = useContext(HouseDemandContext);
 
   const handleHasGarden = () => {

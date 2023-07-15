@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import UnitPriceArea from './Components/UnitPriceArea';
 import DemandArea from './Components/DemandArea';
@@ -21,8 +22,7 @@ const theme = createTheme({
 });
 
 
-function App() {
-  return (
+const App: React.FC = () => (
     <div className="App">
       <header className="App-header">
         <ThemeProvider theme={theme}>
@@ -34,10 +34,8 @@ function App() {
             <Price />
           </HouseDemandProvider>
         </ThemeProvider>
-
       </header>
     </div>
-  );
-}
+);
 
 export default App;

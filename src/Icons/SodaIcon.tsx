@@ -1,6 +1,7 @@
 import React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SodaIcon(props: any, ref: any) {
     return (
         <SvgIcon {...props} ref={ref}>

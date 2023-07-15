@@ -5,9 +5,7 @@ import Title from './Title';
 import ToggleButton from './ToggleButton';
 import FoodChainMagnatePalette from './ColorPalette';
 
-type UnitPriceAreaProps = {};
-
-const UnitPriceArea: React.FC<UnitPriceAreaProps> = () => {
+const UnitPriceArea: React.FC = () => {
   const { unitPrice, setUnitPrice, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDiscountManager = () => {

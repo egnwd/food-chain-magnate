@@ -7,9 +7,7 @@ import SodaIcon from '../Icons/SodaIcon';
 import BurgerIcon from '../Icons/BurgerIcon';
 import PizzaIcon from '../Icons/PizzaIcon';
 
-type DemandAreaProps = {};
-
-const DemandArea: React.FC<DemandAreaProps> = () => {
+const DemandArea: React.FC = () => {
   const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDrink = () => {
