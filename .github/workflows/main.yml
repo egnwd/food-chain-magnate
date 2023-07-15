@@ -19,13 +19,11 @@ jobs:
       CACHE_VERSION: v2
 
     steps:
-      - uses: actions/checkout@v2.5.0
-
-      # Beginning of yarn setup, keep in sync between all workflows, see ci.yml
+      - uses: actions/checkout@v3
       - name: use node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: ${{ matrix.node-version }}
       - name: cache all node_modules
         id: cache-modules
         uses: actions/cache@v2
@@ -46,7 +44,6 @@ jobs:
             ${{ runner.os }}-yarn-${{ env.CACHE_VERSION }}-
       - name: yarn install
         run: yarn install --frozen-lockfile
-      # End of yarn setup
       - name: build
         run: yarn build
 
@@ -69,9 +66,7 @@ jobs:
       NODE_OPTIONS: --max-old-space-size=4096
 
     steps:
-      - uses: actions/checkout@v2.5.0
-      
-      # Beginning of yarn setup, keep in sync between all workflows, see ci.yml
+      - uses: actions/checkout@v3
       - name: use node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -96,10 +91,9 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: yarn install
         run: yarn install --frozen-lockfile
-      # End of yarn setup
-
       - name: Deploy
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          npm run deploy -- -m ":rocket: Update App"
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy -- -u "github-actions-bot <support+actions@github.com>" -m ":rocket: Update App"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
