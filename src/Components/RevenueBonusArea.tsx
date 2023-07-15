@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
-import ToggleButton from './ToggleButton';
-import FoodChainMagnatePalette from './ColorPalette';
-import { HouseDemandContext } from './HouseDemandContext';
-import Title from './Title';
+import React, { useContext } from "react";
+import ToggleButton from "./ToggleButton";
+import FoodChainMagnatePalette from "./ColorPalette";
+import { HouseDemandContext } from "./HouseDemandContext";
+import Title from "./Title";
 
 const RevenueBonusArea: React.FC = () => {
-  const { hasGarden, setHasGarden, hasCFO, setHasCFO, } = useContext(HouseDemandContext);
+  const { hasGarden, setHasGarden, hasCFO, setHasCFO } =
+    useContext(HouseDemandContext);
 
   const handleHasGarden = () => {
     setHasGarden(!hasGarden);

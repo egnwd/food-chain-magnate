@@ -1,23 +1,32 @@
-import React, { useContext } from 'react';
-import NumberButton from './NumberButton';
-import { HouseDemandContext } from './HouseDemandContext';
-import Title from './Title';
-import ToggleButton from './ToggleButton';
-import FoodChainMagnatePalette from './ColorPalette';
+import React, { useContext } from "react";
+import NumberButton from "./NumberButton";
+import { HouseDemandContext } from "./HouseDemandContext";
+import Title from "./Title";
+import ToggleButton from "./ToggleButton";
+import FoodChainMagnatePalette from "./ColorPalette";
 
 const UnitPriceArea: React.FC = () => {
-  const { unitPrice, setUnitPrice, milestones, setMilestones } = useContext(HouseDemandContext);
+  const { unitPrice, setUnitPrice, milestones, setMilestones } =
+    useContext(HouseDemandContext);
 
   const handleAddDiscountManager = () => {
     if (unitPrice.unitPrice - 1 <= 0) {
       return;
     }
-    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 1, discountManagers: unitPrice.discountManagers + 1 });
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice - 1,
+      discountManagers: unitPrice.discountManagers + 1,
+    });
   };
 
   const handleRemoveDiscountManager = () => {
     if (unitPrice.discountManagers > 0) {
-      setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + 1, discountManagers: unitPrice.discountManagers - 1 });
+      setUnitPrice({
+        ...unitPrice,
+        unitPrice: unitPrice.unitPrice + 1,
+        discountManagers: unitPrice.discountManagers - 1,
+      });
     }
   };
 
@@ -25,17 +34,29 @@ const UnitPriceArea: React.FC = () => {
     if (unitPrice.unitPrice - 3 <= 0) {
       return;
     }
-    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 3, discountDirectors: unitPrice.discountDirectors + 1 });
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice - 3,
+      discountDirectors: unitPrice.discountDirectors + 1,
+    });
   };
 
   const handleRemoveDiscountDirector = () => {
     if (unitPrice.discountDirectors > 0) {
-      setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + 3, discountDirectors: unitPrice.discountDirectors - 1 });
+      setUnitPrice({
+        ...unitPrice,
+        unitPrice: unitPrice.unitPrice + 3,
+        discountDirectors: unitPrice.discountDirectors - 1,
+      });
     }
   };
 
   const handleAddLuxuryManager = () => {
-    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + 10, luxuryManagers: unitPrice.luxuryManagers + 1 });
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice + 10,
+      luxuryManagers: unitPrice.luxuryManagers + 1,
+    });
   };
 
   const handleRemoveLuxuryManager = () => {
@@ -43,15 +64,29 @@ const UnitPriceArea: React.FC = () => {
       return;
     }
 
-    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice - 10, luxuryManagers: unitPrice.luxuryManagers - 1 });
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice - 10,
+      luxuryManagers: unitPrice.luxuryManagers - 1,
+    });
   };
 
   const handlePermanentDiscount = () => {
-    if (unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1)  <= 0) {
+    if (
+      unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) <=
+      0
+    ) {
       return;
     }
-    setUnitPrice({ ...unitPrice, unitPrice: unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) });
-    setMilestones({ ...milestones, hasPermanentDiscount: !milestones.hasPermanentDiscount });
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice:
+        unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1),
+    });
+    setMilestones({
+      ...milestones,
+      hasPermanentDiscount: !milestones.hasPermanentDiscount,
+    });
   };
 
   return (
@@ -59,12 +94,13 @@ const UnitPriceArea: React.FC = () => {
       <Title>Unit Price</Title>
       <div
         style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          minWidth: '100vw'
-        }}>
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          alignItems: "center",
+          minWidth: "100vw",
+        }}
+      >
         <NumberButton
           label="- $1"
           onIncrement={handleAddDiscountManager}
@@ -75,7 +111,9 @@ const UnitPriceArea: React.FC = () => {
           onIncrement={handleAddDiscountDirector}
           onDecrement={handleRemoveDiscountDirector}
         />
-        <div style={{ minWidth: '3em', fontSize: '2em', fontWeight: 700 }}>${unitPrice.unitPrice}</div>
+        <div style={{ minWidth: "3em", fontSize: "2em", fontWeight: 700 }}>
+          ${unitPrice.unitPrice}
+        </div>
         <NumberButton
           label="+ $10"
           onIncrement={handleAddLuxuryManager}

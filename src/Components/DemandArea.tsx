@@ -1,41 +1,58 @@
-import React, { useContext } from 'react';
-import NumberButton from './NumberButton';
-import { HouseDemandContext } from './HouseDemandContext';
-import Title from './Title';
-import ToggleButton from './ToggleButton';
-import SodaIcon from '../Icons/SodaIcon';
-import BurgerIcon from '../Icons/BurgerIcon';
-import PizzaIcon from '../Icons/PizzaIcon';
+import React, { useContext } from "react";
+import NumberButton from "./NumberButton";
+import { HouseDemandContext } from "./HouseDemandContext";
+import Title from "./Title";
+import ToggleButton from "./ToggleButton";
+import SodaIcon from "../Icons/SodaIcon";
+import BurgerIcon from "../Icons/BurgerIcon";
+import PizzaIcon from "../Icons/PizzaIcon";
 
 const DemandArea: React.FC = () => {
-  const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
+  const { demand, setDemand, milestones, setMilestones } =
+    useContext(HouseDemandContext);
 
   const handleAddDrink = () => {
     if (demand.total >= 5) {
       return;
     }
-    setDemand({ ...demand, drinks: demand.drinks + 1, total: demand.total + 1 });
+    setDemand({
+      ...demand,
+      drinks: demand.drinks + 1,
+      total: demand.total + 1,
+    });
   };
 
   const handleRemoveDrink = () => {
     if (demand.drinks <= 0) {
       return;
     }
-    setDemand({ ...demand, drinks: demand.drinks - 1, total: demand.total - 1 });
+    setDemand({
+      ...demand,
+      drinks: demand.drinks - 1,
+      total: demand.total - 1,
+    });
   };
 
   const handleAddBurgers = () => {
     if (demand.total >= 5) {
       return;
     }
-    setDemand({ ...demand, burgers: demand.burgers + 1, total: demand.total + 1 });
+    setDemand({
+      ...demand,
+      burgers: demand.burgers + 1,
+      total: demand.total + 1,
+    });
   };
 
   const handleRemoveBurgers = () => {
     if (demand.burgers <= 0) {
       return;
     }
-    setDemand({ ...demand, burgers: demand.burgers - 1, total: demand.total - 1 });
+    setDemand({
+      ...demand,
+      burgers: demand.burgers - 1,
+      total: demand.total - 1,
+    });
   };
 
   const handleAddPizza = () => {
@@ -57,7 +74,10 @@ const DemandArea: React.FC = () => {
   };
 
   const handleBurgerBonus = () => {
-    setMilestones({ ...milestones, hasBurgerBonus: !milestones.hasBurgerBonus });
+    setMilestones({
+      ...milestones,
+      hasBurgerBonus: !milestones.hasBurgerBonus,
+    });
   };
 
   const handlePizzaBonus = () => {
@@ -67,7 +87,7 @@ const DemandArea: React.FC = () => {
   return (
     <section>
       <Title>Demand</Title>
-      <div className='menuItem'>
+      <div className="menuItem">
         <SodaIcon />
         <NumberButton
           label={demand.drinks.toString()}
@@ -81,7 +101,7 @@ const DemandArea: React.FC = () => {
           onClick={handleDrinkBonus}
         />
       </div>
-      <div className='menuItem'>
+      <div className="menuItem">
         <BurgerIcon />
 
         <NumberButton
@@ -95,9 +115,8 @@ const DemandArea: React.FC = () => {
           active={milestones.hasBurgerBonus}
           onClick={handleBurgerBonus}
         />
-
       </div>
-      <div className='menuItem'>
+      <div className="menuItem">
         <PizzaIcon />
 
         <NumberButton
@@ -112,7 +131,6 @@ const DemandArea: React.FC = () => {
           onClick={handlePizzaBonus}
         />
       </div>
-
     </section>
   );
 };

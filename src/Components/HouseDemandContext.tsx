@@ -55,18 +55,20 @@ export const HouseDemandContext = createContext<HouseDemand>({
     pizza: 0,
     total: 0,
   },
-  setHasGarden: () => { },
-  setHasCFO: () => { },
-  setMilestones: () => { },
-  setUnitPrice: () => { },
-  setDemand: () => { },
+  setHasGarden: () => {},
+  setHasCFO: () => {},
+  setMilestones: () => {},
+  setUnitPrice: () => {},
+  setDemand: () => {},
 });
 
 type HouseDemandProviderProps = {
   children: React.ReactNode;
 };
 
-export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ children }) => {
+export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({
+  children,
+}) => {
   const [milestones, setMilestones] = useState<Milestones>({
     hasDrinkBonus: false,
     hasBurgerBonus: false,
@@ -89,22 +91,24 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
   });
 
   const [hasGarden, setHasGarden] = useState<boolean>(false);
-  
+
   const [hasCFO, setHasCFO] = useState<boolean>(false);
 
   return (
-    <HouseDemandContext.Provider value={{ 
-      milestones, 
-      setMilestones, 
-      unitPrice, 
-      setUnitPrice, 
-      demand, 
-      setDemand, 
-      hasGarden, 
-      setHasGarden,
-      hasCFO,
-      setHasCFO,
-      }}>
+    <HouseDemandContext.Provider
+      value={{
+        milestones,
+        setMilestones,
+        unitPrice,
+        setUnitPrice,
+        demand,
+        setDemand,
+        hasGarden,
+        setHasGarden,
+        hasCFO,
+        setHasCFO,
+      }}
+    >
       {children}
     </HouseDemandContext.Provider>
   );

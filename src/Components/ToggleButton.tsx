@@ -1,5 +1,5 @@
-import React from 'react';
-import FoodChainMagnatePalette from './ColorPalette';
+import React from "react";
+import FoodChainMagnatePalette from "./ColorPalette";
 
 type ToggleButtonProps = {
   label: string;
@@ -8,7 +8,7 @@ type ToggleButtonProps = {
   activeColor?: string;
 };
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({ 
+const ToggleButton: React.FC<ToggleButtonProps> = ({
   label,
   active,
   onClick,
@@ -19,10 +19,10 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className='togglable'
+      className="togglable"
       style={{
-        backgroundColor: active ? activeColor : inactiveColor, 
-        color: textColor, 
+        backgroundColor: active ? activeColor : inactiveColor,
+        color: textColor,
       }}
     >
       {label}
