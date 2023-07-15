@@ -50,9 +50,6 @@ jobs:
       - name: build
         run: yarn build
 
-  # A separate release build that is only run for commits that are the result of merging the "Version Packages" PR
-  # We can't re-use the output from the above step, but we'll have a guaranteed node_modules cache and
-  # only run the build steps that are necessary for publishing
   deploy:
     needs: build
 
@@ -102,4 +99,5 @@ jobs:
       # End of yarn setup
 
       - name: Deploy
-        run: npm run deploy -- -m ":rocket: Update App"
+        run: | 
+          npm run deploy -- -m ":rocket: Update App"
