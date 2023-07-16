@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { createContext, useState } from "react";
 
 type Milestones = {
@@ -66,9 +67,7 @@ type HouseDemandProviderProps = {
   children: React.ReactNode;
 };
 
-export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({
-  children,
-}) => {
+export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ children }) => {
   const [milestones, setMilestones] = useState<Milestones>({
     hasDrinkBonus: false,
     hasBurgerBonus: false,
