@@ -28,7 +28,7 @@ jobs:
         id: cache-modules
         uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-v${{ matrix.node-version }}-${{ env.CACHE_VERSION }}-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
       - name: find location of global yarn cache
         id: yarn-cache
@@ -44,8 +44,11 @@ jobs:
             ${{ runner.os }}-yarn-${{ env.CACHE_VERSION }}-
       - name: yarn install
         run: yarn install --frozen-lockfile
-      - name: build
-        run: yarn build
+      - name: Build etc
+        run: |
+          yarn tsc --project ./tsconfig.json
+          yarn lint   
+          yarn build
 
   deploy:
     needs: build
@@ -75,7 +78,7 @@ jobs:
         id: cache-modules
         uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-v${{ matrix.node-version }}-v2-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
       - name: find location of global yarn cache
         id: yarn-cache
