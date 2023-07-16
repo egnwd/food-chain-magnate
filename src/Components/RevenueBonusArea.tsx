@@ -23,7 +23,7 @@ const RevenueBonusArea: React.FC = () => {
           label="Garden"
           active={hasGarden}
           onClick={handleHasGarden}
-          activeColor={FoodChainMagnatePalette.cfo}
+          activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
         <ToggleButton
           label="CFO"
