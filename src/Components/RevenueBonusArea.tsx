@@ -5,8 +5,7 @@ import { HouseDemandContext } from "./HouseDemandContext";
 import Title from "./Title";
 
 const RevenueBonusArea: React.FC = () => {
-  const { hasGarden, setHasGarden, hasCFO, setHasCFO } =
-    useContext(HouseDemandContext);
+  const { hasGarden, setHasGarden, hasCFO, setHasCFO } = useContext(HouseDemandContext);
 
   const handleHasGarden = () => {
     setHasGarden(!hasGarden);
@@ -24,12 +23,13 @@ const RevenueBonusArea: React.FC = () => {
           label="Garden"
           active={hasGarden}
           onClick={handleHasGarden}
+          activeColor={FoodChainMagnatePalette.cfo}
         />
         <ToggleButton
           label="CFO"
           active={hasCFO}
           onClick={handleHasCFO}
-          activeColor={FoodChainMagnatePalette.cfo}
+          activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
       </div>
     </section>
