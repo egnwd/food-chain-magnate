@@ -27,6 +27,10 @@ export type HouseDemand = {
   setHasGarden: React.Dispatch<React.SetStateAction<boolean>>;
   hasCFO: boolean;
   setHasCFO: React.Dispatch<React.SetStateAction<boolean>>;
+  hasFirstWaitress : boolean;
+  setHasFirstWaitress: React.Dispatch<React.SetStateAction<boolean>>;
+  numberWaitresses: number;
+  setNumberWaitresses: React.Dispatch<React.SetStateAction<number>>;
   milestones: Milestones;
   setMilestones: React.Dispatch<React.SetStateAction<Milestones>>;
   unitPrice: UnitPrice;
@@ -38,6 +42,8 @@ export type HouseDemand = {
 export const HouseDemandContext = createContext<HouseDemand>({
   hasGarden: false,
   hasCFO: false,
+  hasFirstWaitress: false,
+  numberWaitresses: 0,
   milestones: {
     hasDrinkBonus: false,
     hasBurgerBonus: false,
@@ -56,11 +62,13 @@ export const HouseDemandContext = createContext<HouseDemand>({
     pizza: 0,
     total: 0,
   },
-  setHasGarden: () => {},
-  setHasCFO: () => {},
-  setMilestones: () => {},
-  setUnitPrice: () => {},
-  setDemand: () => {},
+  setHasGarden: () => { },
+  setHasCFO: () => { },
+  setHasFirstWaitress: () => { },
+  setNumberWaitresses: () => { },
+  setMilestones: () => { },
+  setUnitPrice: () => { },
+  setDemand: () => { },
 });
 
 type HouseDemandProviderProps = {
@@ -92,22 +100,28 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
   const [hasGarden, setHasGarden] = useState<boolean>(false);
 
   const [hasCFO, setHasCFO] = useState<boolean>(false);
+  
+  const [hasFirstWaitress, setHasFirstWaitress] = useState<boolean>(false);
+
+  const [numberWaitresses, setNumberWaitresses] = useState<number>(0);
 
   return (
-    <HouseDemandContext.Provider
-      value={{
-        milestones,
-        setMilestones,
-        unitPrice,
-        setUnitPrice,
-        demand,
-        setDemand,
-        hasGarden,
-        setHasGarden,
-        hasCFO,
-        setHasCFO,
-      }}
-    >
+    <HouseDemandContext.Provider value={{ 
+      milestones, 
+      setMilestones, 
+      unitPrice, 
+      setUnitPrice, 
+      demand, 
+      setDemand, 
+      hasGarden, 
+      setHasGarden,
+      hasCFO,
+      setHasCFO,
+      hasFirstWaitress,
+      setHasFirstWaitress,
+      numberWaitresses,
+      setNumberWaitresses,
+      }}>
       {children}
     </HouseDemandContext.Provider>
   );
