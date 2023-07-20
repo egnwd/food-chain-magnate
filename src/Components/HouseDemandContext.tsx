@@ -10,9 +10,9 @@ type Milestones = {
 };
 
 type UnitPrice = {
+  pricingManagers: number;
   discountManagers: number;
   luxuryManagers: number;
-  discountDirectors: number;
   unitPrice: number;
 };
 
@@ -50,8 +50,8 @@ export const HouseDemandContext = createContext<HouseDemand>({
     hasFirstWaitress: false,
   },
   unitPrice: {
+    pricingManagers: 0,
     discountManagers: 0,
-    discountDirectors: 0,
     luxuryManagers: 0,
     unitPrice: 10,
   },
@@ -83,8 +83,8 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
   });
 
   const [unitPrice, setUnitPrice] = useState<UnitPrice>({
+    pricingManagers: 0,
     discountManagers: 0,
-    discountDirectors: 0,
     luxuryManagers: 0,
     unitPrice: 10,
   });
