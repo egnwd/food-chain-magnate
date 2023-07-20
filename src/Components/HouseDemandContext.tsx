@@ -6,6 +6,7 @@ type Milestones = {
   hasBurgerBonus: boolean;
   hasPizzaBonus: boolean;
   hasPermanentDiscount: boolean;
+  hasFirstWaitress: boolean;
 };
 
 type UnitPrice = {
@@ -27,8 +28,6 @@ export type HouseDemand = {
   setHasGarden: React.Dispatch<React.SetStateAction<boolean>>;
   hasCFO: boolean;
   setHasCFO: React.Dispatch<React.SetStateAction<boolean>>;
-  hasFirstWaitress : boolean;
-  setHasFirstWaitress: React.Dispatch<React.SetStateAction<boolean>>;
   numberWaitresses: number;
   setNumberWaitresses: React.Dispatch<React.SetStateAction<number>>;
   milestones: Milestones;
@@ -42,13 +41,13 @@ export type HouseDemand = {
 export const HouseDemandContext = createContext<HouseDemand>({
   hasGarden: false,
   hasCFO: false,
-  hasFirstWaitress: false,
   numberWaitresses: 0,
   milestones: {
     hasDrinkBonus: false,
     hasBurgerBonus: false,
     hasPizzaBonus: false,
     hasPermanentDiscount: false,
+    hasFirstWaitress: false,
   },
   unitPrice: {
     discountManagers: 0,
@@ -62,13 +61,12 @@ export const HouseDemandContext = createContext<HouseDemand>({
     pizza: 0,
     total: 0,
   },
-  setHasGarden: () => { },
-  setHasCFO: () => { },
-  setHasFirstWaitress: () => { },
-  setNumberWaitresses: () => { },
-  setMilestones: () => { },
-  setUnitPrice: () => { },
-  setDemand: () => { },
+  setHasGarden: () => {},
+  setHasCFO: () => {},
+  setNumberWaitresses: () => {},
+  setMilestones: () => {},
+  setUnitPrice: () => {},
+  setDemand: () => {},
 });
 
 type HouseDemandProviderProps = {
@@ -81,6 +79,7 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
     hasBurgerBonus: false,
     hasPizzaBonus: false,
     hasPermanentDiscount: false,
+    hasFirstWaitress: false,
   });
 
   const [unitPrice, setUnitPrice] = useState<UnitPrice>({
@@ -100,28 +99,26 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
   const [hasGarden, setHasGarden] = useState<boolean>(false);
 
   const [hasCFO, setHasCFO] = useState<boolean>(false);
-  
-  const [hasFirstWaitress, setHasFirstWaitress] = useState<boolean>(false);
 
   const [numberWaitresses, setNumberWaitresses] = useState<number>(0);
 
   return (
-    <HouseDemandContext.Provider value={{ 
-      milestones, 
-      setMilestones, 
-      unitPrice, 
-      setUnitPrice, 
-      demand, 
-      setDemand, 
-      hasGarden, 
-      setHasGarden,
-      hasCFO,
-      setHasCFO,
-      hasFirstWaitress,
-      setHasFirstWaitress,
-      numberWaitresses,
-      setNumberWaitresses,
-      }}>
+    <HouseDemandContext.Provider
+      value={{
+        milestones,
+        setMilestones,
+        unitPrice,
+        setUnitPrice,
+        demand,
+        setDemand,
+        hasGarden,
+        setHasGarden,
+        hasCFO,
+        setHasCFO,
+        numberWaitresses,
+        setNumberWaitresses,
+      }}
+    >
       {children}
     </HouseDemandContext.Provider>
   );

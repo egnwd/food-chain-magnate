@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
-import ToggleButton from './ToggleButton';
-import NumberButton from './NumberButton';
-import FoodChainMagnatePalette from './ColorPalette';
-import { HouseDemandContext } from './HouseDemandContext';
-import Title from './Title';
+import React, { useContext } from "react";
+import ToggleButton from "./ToggleButton";
+import NumberButton from "./NumberButton";
+import FoodChainMagnatePalette from "./ColorPalette";
+import { HouseDemandContext } from "./HouseDemandContext";
+import Title from "./Title";
 
 const RevenueBonusArea: React.FC = () => {
-  const { 
-    hasGarden, 
-    setHasGarden, 
-    hasCFO, 
-    setHasCFO, 
-    hasFirstWaitress,
-    setHasFirstWaitress,
-    numberWaitresses, 
+  const {
+    hasGarden,
+    setHasGarden,
+    hasCFO,
+    setHasCFO,
+    milestones,
+    setMilestones,
+    numberWaitresses,
     setNumberWaitresses,
   } = useContext(HouseDemandContext);
 
@@ -26,27 +26,27 @@ const RevenueBonusArea: React.FC = () => {
   };
 
   const handleHasFirstWaitress = () => {
-    setHasFirstWaitress(!hasFirstWaitress);
-  }
+    setMilestones({ ...milestones, hasFirstWaitress: !milestones.hasFirstWaitress });
+  };
 
   const handleAddWaitress = () => {
     if (numberWaitresses >= 12) {
       return;
     }
     setNumberWaitresses(numberWaitresses + 1);
-  }
+  };
 
   const handleRemoveWaitress = () => {
     if (numberWaitresses <= 0) {
       return;
     }
     setNumberWaitresses(numberWaitresses - 1);
-  }
+  };
 
   return (
     <section>
       <Title>Revenue Bonuses</Title>
-      <div style={{display:'flex'}}>
+      <div style={{ display: "flex" }}>
         <ToggleButton
           label="Garden"
           active={hasGarden}
@@ -66,7 +66,7 @@ const RevenueBonusArea: React.FC = () => {
         />
         <ToggleButton
           label="First Waitress"
-          active={hasFirstWaitress}
+          active={milestones.hasFirstWaitress}
           onClick={handleHasFirstWaitress}
           activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
