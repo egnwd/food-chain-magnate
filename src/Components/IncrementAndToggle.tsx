@@ -28,6 +28,7 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
       style={{
         borderRadius: "5px",
         minWidth: "120px",
+        minHeight: "140px",
         backgroundColor: activeColor,
       }}
     >

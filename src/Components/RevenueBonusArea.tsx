@@ -46,7 +46,7 @@ const RevenueBonusArea: React.FC = () => {
   return (
     <section>
       <Title>Revenue Bonuses</Title>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
         <ToggleButton
           label="Garden"
           active={hasGarden}
