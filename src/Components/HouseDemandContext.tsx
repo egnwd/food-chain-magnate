@@ -6,6 +6,7 @@ type Milestones = {
   hasBurgerBonus: boolean;
   hasPizzaBonus: boolean;
   hasPermanentDiscount: boolean;
+  hasFirstWaitress: boolean;
 };
 
 type UnitPrice = {
@@ -27,6 +28,8 @@ export type HouseDemand = {
   setHasGarden: React.Dispatch<React.SetStateAction<boolean>>;
   hasCFO: boolean;
   setHasCFO: React.Dispatch<React.SetStateAction<boolean>>;
+  numberWaitresses: number;
+  setNumberWaitresses: React.Dispatch<React.SetStateAction<number>>;
   milestones: Milestones;
   setMilestones: React.Dispatch<React.SetStateAction<Milestones>>;
   unitPrice: UnitPrice;
@@ -38,11 +41,13 @@ export type HouseDemand = {
 export const HouseDemandContext = createContext<HouseDemand>({
   hasGarden: false,
   hasCFO: false,
+  numberWaitresses: 0,
   milestones: {
     hasDrinkBonus: false,
     hasBurgerBonus: false,
     hasPizzaBonus: false,
     hasPermanentDiscount: false,
+    hasFirstWaitress: false,
   },
   unitPrice: {
     discountManagers: 0,
@@ -58,6 +63,7 @@ export const HouseDemandContext = createContext<HouseDemand>({
   },
   setHasGarden: () => {},
   setHasCFO: () => {},
+  setNumberWaitresses: () => {},
   setMilestones: () => {},
   setUnitPrice: () => {},
   setDemand: () => {},
@@ -73,6 +79,7 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
     hasBurgerBonus: false,
     hasPizzaBonus: false,
     hasPermanentDiscount: false,
+    hasFirstWaitress: false,
   });
 
   const [unitPrice, setUnitPrice] = useState<UnitPrice>({
@@ -93,6 +100,8 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
 
   const [hasCFO, setHasCFO] = useState<boolean>(false);
 
+  const [numberWaitresses, setNumberWaitresses] = useState<number>(0);
+
   return (
     <HouseDemandContext.Provider
       value={{
@@ -106,6 +115,8 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
         setHasGarden,
         hasCFO,
         setHasCFO,
+        numberWaitresses,
+        setNumberWaitresses,
       }}
     >
       {children}

@@ -1,20 +1,16 @@
 import React, { useContext } from "react";
 import { HouseDemand, HouseDemandContext } from "./HouseDemandContext";
 
-function CalculatePrice({
-  milestones,
-  demand,
-  unitPrice,
-  hasGarden,
-  hasCFO,
-}: HouseDemand): number {
+function CalculatePrice({ milestones, demand, unitPrice, hasGarden, hasCFO, numberWaitresses }: HouseDemand): number {
   const numItems = demand.total;
   const basePrice = numItems * unitPrice.unitPrice;
   const housePrice = basePrice * (hasGarden ? 2 : 1);
   const drinkBonus = demand.drinks * (milestones.hasDrinkBonus ? 5 : 0);
   const burgerBonus = demand.burgers * (milestones.hasBurgerBonus ? 5 : 0);
   const pizzaBonus = demand.pizza * (milestones.hasPizzaBonus ? 5 : 0);
-  const total = housePrice + drinkBonus + burgerBonus + pizzaBonus;
+  const dollarPerWaitress = milestones.hasFirstWaitress ? 5 : 3;
+  const waitressBonus = numberWaitresses * dollarPerWaitress;
+  const total = housePrice + drinkBonus + burgerBonus + pizzaBonus + waitressBonus;
   return hasCFO ? Math.ceil(total * 1.5) : total;
 }
 
