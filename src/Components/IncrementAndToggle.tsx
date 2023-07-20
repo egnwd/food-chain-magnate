@@ -28,7 +28,7 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
       style={{
         borderRadius: "5px",
         minWidth: "120px",
-        backgroundColor: inactiveColor,
+        backgroundColor: activeColor,
       }}
     >
       <div
@@ -45,6 +45,7 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
         }}
       >
         <div
@@ -53,26 +54,28 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
             flexDirection: "column",
             justifyContent: "space-between",
             flexGrow: 1,
+            padding: "10px 0",
           }}
         >
-          <button onClick={onIncrement}>▲</button>
-          <span>{counter.toString()}</span>
-          <button onClick={onDecrement}>▼</button>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <button onClick={onDecrement}>◀</button>
+            <span>{counter.toString()}</span>
+            <button onClick={onIncrement}>▶</button>
+          </div>
         </div>
         <button
           onClick={onClick}
           style={{
             color: textColor,
-            borderLeft: "solid 1px",
-            borderColor: activeColor,
-            padding: 0,
+            borderColor: inactiveColor,
+            padding: "10px 0",
             cursor: "pointer",
             flexGrow: 1,
             backgroundColor: toggledBackgroundColor,
-            borderRadius: "0px 0px 5px 0px",
+            borderRadius: "0px 0px 5px 5px",
           }}
         >
-          1<sup>st</sup>
+          Milestone
         </button>
       </div>
     </div>
