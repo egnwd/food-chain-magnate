@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { HouseDemand, HouseDemandContext } from "./HouseDemandContext";
 
-function CalculatePrice({ milestones, demand, unitPrice, hasGarden, hasCFO, numberWaitresses }: HouseDemand): number {
+function CalculatePrice({ milestones, demand, unitPrice, hasGarden, hasCFO, numberWaitresses }: HouseDemand): string {
   const numItems = demand.total;
   const basePrice = numItems * unitPrice.unitPrice;
   const housePrice = basePrice * (hasGarden ? 2 : 1);
@@ -11,7 +11,10 @@ function CalculatePrice({ milestones, demand, unitPrice, hasGarden, hasCFO, numb
   const dollarPerWaitress = milestones.hasFirstWaitress ? 5 : 3;
   const waitressBonus = numberWaitresses * dollarPerWaitress;
   const total = housePrice + drinkBonus + burgerBonus + pizzaBonus + waitressBonus;
-  return hasCFO ? Math.ceil(total * 1.5) : total;
+  const overallRevenue = hasCFO ? Math.ceil(total * 1.5) : total;
+  return `${numItems} x $${unitPrice.unitPrice} + $${
+    overallRevenue - numItems * unitPrice.unitPrice
+  } = $${overallRevenue}`;
 }
 
 const Price: React.FC = () => {
@@ -19,7 +22,7 @@ const Price: React.FC = () => {
 
   return (
     <div className="price">
-      <h1>${CalculatePrice(house)}</h1>
+      <h1>{CalculatePrice(house)}</h1>
     </div>
   );
 };
