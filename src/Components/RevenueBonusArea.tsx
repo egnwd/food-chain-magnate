@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ToggleButton from "./ToggleButton";
-import NumberButton from "./NumberButton";
+import IncrementAndToggle from "./IncrementAndToggle";
 import FoodChainMagnatePalette from "./ColorPalette";
 import { HouseDemandContext } from "./HouseDemandContext";
 import Title from "./Title";
@@ -59,15 +59,13 @@ const RevenueBonusArea: React.FC = () => {
           onClick={handleHasCFO}
           activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
-        <NumberButton
-          label={numberWaitresses.toString()}
-          onIncrement={handleAddWaitress}
-          onDecrement={handleRemoveWaitress}
-        />
-        <ToggleButton
-          label="First Waitress"
+        <IncrementAndToggle
+          label="Waitresses"
           active={milestones.hasFirstWaitress}
           onClick={handleHasFirstWaitress}
+          counter={numberWaitresses}
+          onIncrement={handleAddWaitress}
+          onDecrement={handleRemoveWaitress}
           activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
       </div>

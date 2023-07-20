@@ -8,8 +8,7 @@ import BurgerIcon from "../Icons/BurgerIcon";
 import PizzaIcon from "../Icons/PizzaIcon";
 
 const DemandArea: React.FC = () => {
-  const { demand, setDemand, milestones, setMilestones } =
-    useContext(HouseDemandContext);
+  const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDrink = () => {
     if (demand.total >= 5) {
@@ -89,17 +88,8 @@ const DemandArea: React.FC = () => {
       <Title>Demand</Title>
       <div className="menuItem">
         <SodaIcon />
-        <NumberButton
-          label={demand.drinks.toString()}
-          onIncrement={handleAddDrink}
-          onDecrement={handleRemoveDrink}
-          horizontal
-        />
-        <ToggleButton
-          label="+$5 on Drinks"
-          active={milestones.hasDrinkBonus}
-          onClick={handleDrinkBonus}
-        />
+        <NumberButton label={demand.drinks.toString()} onIncrement={handleAddDrink} onDecrement={handleRemoveDrink} />
+        <ToggleButton label="+$5 on Drinks" active={milestones.hasDrinkBonus} onClick={handleDrinkBonus} />
       </div>
       <div className="menuItem">
         <BurgerIcon />
@@ -108,28 +98,14 @@ const DemandArea: React.FC = () => {
           label={demand.burgers.toString()}
           onIncrement={handleAddBurgers}
           onDecrement={handleRemoveBurgers}
-          horizontal
         />
-        <ToggleButton
-          label="+$5 on Burger"
-          active={milestones.hasBurgerBonus}
-          onClick={handleBurgerBonus}
-        />
+        <ToggleButton label="+$5 on Burger" active={milestones.hasBurgerBonus} onClick={handleBurgerBonus} />
       </div>
       <div className="menuItem">
         <PizzaIcon />
 
-        <NumberButton
-          label={demand.pizza.toString()}
-          onIncrement={handleAddPizza}
-          onDecrement={handleRemovePizza}
-          horizontal
-        />
-        <ToggleButton
-          label="+$5 on Pizza"
-          active={milestones.hasPizzaBonus}
-          onClick={handlePizzaBonus}
-        />
+        <NumberButton label={demand.pizza.toString()} onIncrement={handleAddPizza} onDecrement={handleRemovePizza} />
+        <ToggleButton label="+$5 on Pizza" active={milestones.hasPizzaBonus} onClick={handlePizzaBonus} />
       </div>
     </section>
   );

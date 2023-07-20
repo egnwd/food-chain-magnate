@@ -204,6 +204,13 @@ button:focus {
   font-weight: 700;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: rgb(42, 39, 39);
+}
+
 .numberCruncher button {
   border: none;
   cursor: pointer;
