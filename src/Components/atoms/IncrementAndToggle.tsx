@@ -37,7 +37,7 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
           backgroundColor: "black",
           color: "white",
           fontWeight: "700",
-          padding: "5px",
+          padding: "5px 0",
         }}
       >
         {label}
@@ -60,11 +60,10 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
         style={{
           color: textColor,
           borderColor: inactiveColor,
-          padding: "10px 0",
+          padding: "5px 0",
           cursor: "pointer",
           flexGrow: 1,
           backgroundColor: toggledBackgroundColor,
-          borderRadius: "0px 0px 5px 5px",
         }}
       >
         Bonus
