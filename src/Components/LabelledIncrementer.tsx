@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import FoodChainMagnatePalette from "./ColorPalette";
 
 type NumberButtonProps = {
-  label: ReactNode;
+  label: string;
   counter: number;
   onIncrement: () => void;
   onDecrement: () => void;
@@ -22,7 +22,6 @@ const LabelledIncrementer: React.FC<NumberButtonProps> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        minWidth: "120px",
         backgroundColor: activeColor,
       }}
     >

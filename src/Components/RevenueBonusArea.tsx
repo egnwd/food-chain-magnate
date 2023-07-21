@@ -48,7 +48,7 @@ const RevenueBonusArea: React.FC = () => {
           activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
         <LabelledIncrementer
-          label={<span>Waitresses</span>}
+          label="Waitresses"
           counter={numberWaitresses}
           onIncrement={handleAddWaitress}
           onDecrement={handleRemoveWaitress}
