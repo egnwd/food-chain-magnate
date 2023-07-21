@@ -1,10 +1,8 @@
 import React from "react";
 import "./App.css";
-import UnitPriceArea from "./Components/UnitPriceArea";
-import DemandArea from "./Components/DemandArea";
+import { DemandArea, UnitPriceArea, RevenueBonusArea } from "./Components/areas";
 import { HouseDemandProvider } from "./Components/HouseDemandContext";
 import Price from "./Components/Price";
-import RevenueBonusArea from "./Components/RevenueBonusArea";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 const theme = createTheme({

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import LabelledIncrementer from "./LabelledIncrementer";
-import { HouseDemandContext } from "./HouseDemandContext";
-import Title from "./Title";
-import ToggleButton from "./ToggleButton";
-import FoodChainMagnatePalette from "./ColorPalette";
+import LabelledIncrementer from "../atoms/LabelledIncrementer";
+import { HouseDemandContext } from "../HouseDemandContext";
+import Title from "../atoms/Title";
+import ToggleButton from "../atoms/ToggleButton";
+import FoodChainMagnatePalette from "../ColorPalette";
 
 const UnitPriceArea: React.FC = () => {
   const { unitPrice, setUnitPrice, milestones, setMilestones, hasGarden, setHasGarden } =
