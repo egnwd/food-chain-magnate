@@ -1,7 +1,7 @@
 import React from "react";
 import FoodChainMagnatePalette from "./ColorPalette";
 
-type NumberButtonProps = {
+type LabelledIncrementerProps = {
   label: string;
   counter: number;
   onIncrement: () => void;
@@ -9,7 +9,7 @@ type NumberButtonProps = {
   activeColor?: string;
 };
 
-const LabelledIncrementer: React.FC<NumberButtonProps> = ({
+const LabelledIncrementer: React.FC<LabelledIncrementerProps> = ({
   label,
   counter,
   onIncrement,
@@ -18,25 +18,24 @@ const LabelledIncrementer: React.FC<NumberButtonProps> = ({
 }) => {
   return (
     <div
-      className="numberCruncher"
       style={{
         display: "flex",
         flexDirection: "column",
-        backgroundColor: activeColor,
+        borderRadius: "5px",
+        overflow: "hidden",
+        fontWeight: 700,
+        minWidth: "3em",
       }}
     >
-      <div style={{ backgroundColor: "black", color: "white", borderRadius: "5px 5px 0px 0px", padding: "5px" }}>
-        {label}
-      </div>
-
+      <div style={{ backgroundColor: "black", color: "white", padding: "5px" }}>{label}</div>
       <div
-        className="counter"
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
-          padding: "5px",
+          padding: "5px 0",
+          backgroundColor: activeColor,
         }}
       >
         <button onClick={onDecrement}>◀</button>

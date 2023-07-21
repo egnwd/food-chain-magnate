@@ -120,7 +120,7 @@ const UnitPriceArea: React.FC = () => {
         />
         <div style={{ display: "flex" }}>
           <ToggleButton
-            label="First to Lower Prices"
+            label="-$1 Sale!"
             active={milestones.hasPermanentDiscount}
             onClick={handlePermanentDiscount}
             activeColor={FoodChainMagnatePalette.discounters}

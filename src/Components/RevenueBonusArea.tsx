@@ -34,7 +34,7 @@ const RevenueBonusArea: React.FC = () => {
   return (
     <section>
       <Title>Revenue Bonuses</Title>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
         <ToggleButton
           label="CFO"
           active={hasCFO}

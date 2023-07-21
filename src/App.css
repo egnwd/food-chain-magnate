@@ -20,6 +20,7 @@ dl,
 dd {
   margin: 0;
   color: rgb(42, 39, 39);
+  background-color: rgb(253, 241, 217);
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -78,7 +79,6 @@ select {
 
 .App {
   text-align: center;
-  background-color: rgb(253, 241, 217);
   min-width: 100vw;
   display: flex;
   flex-direction: column;
@@ -136,24 +136,7 @@ button:focus {
   outline: none;
 }
 
-.numberCruncher {
-  display: flex;
-  flex-direction: column;
-  background: rgb(151, 213, 208);
-  border-radius: 5px;
-  min-width: 3em;
-  font: cursive;
-  font-weight: 700;
-}
-
 button {
-  border: none;
-  cursor: pointer;
-  background: none;
-  color: rgb(42, 39, 39);
-}
-
-.numberCruncher button {
   border: none;
   cursor: pointer;
   background: none;

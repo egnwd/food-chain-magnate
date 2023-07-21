@@ -88,7 +88,6 @@ const DemandArea: React.FC = () => {
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "10px",
-          width: "100%",
         }}
       >
         <IncrementAndToggle

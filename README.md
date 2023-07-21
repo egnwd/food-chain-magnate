@@ -6,7 +6,7 @@ A small webapp to help takeaway some of the maths, and therefore mistakes, that 
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,7 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm run deploy -- -m ":rocket: Update App"`
+### `yarn deploy -m ":rocket: Update App"`
 
 Creates a production build and pushes it to the deployment branch, initiating a deployment to egnwd.github.io.
 
