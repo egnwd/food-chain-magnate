@@ -6,10 +6,11 @@ import ToggleButton from "./ToggleButton";
 import FoodChainMagnatePalette from "./ColorPalette";
 
 const UnitPriceArea: React.FC = () => {
-  const { unitPrice, setUnitPrice, milestones, setMilestones } = useContext(HouseDemandContext);
+  const { unitPrice, setUnitPrice, milestones, setMilestones, hasGarden, setHasGarden } =
+    useContext(HouseDemandContext);
 
   const handleAddPricingManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0) {
+    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.pricingManagers >= 12) {
       return;
     }
     setUnitPrice({
@@ -30,12 +31,12 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleAddDiscountManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0) {
+    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.discountManagers >= 6) {
       return;
     }
     setUnitPrice({
       ...unitPrice,
-      unitPrice: unitPrice.unitPrice - 1,
+      unitPrice: unitPrice.unitPrice - 3,
       discountManagers: unitPrice.discountManagers + 1,
     });
   };
@@ -44,13 +45,16 @@ const UnitPriceArea: React.FC = () => {
     if (unitPrice.discountManagers > 0) {
       setUnitPrice({
         ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 1,
+        unitPrice: unitPrice.unitPrice + 3,
         discountManagers: unitPrice.discountManagers - 1,
       });
     }
   };
 
   const handleAddLuxuryManager = () => {
+    if (unitPrice.luxuryManagers >= 3) {
+      return;
+    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + 10,
@@ -69,6 +73,8 @@ const UnitPriceArea: React.FC = () => {
       luxuryManagers: unitPrice.luxuryManagers - 1,
     });
   };
+
+  const handleHasGarden = () => setHasGarden(!hasGarden);
 
   const handlePermanentDiscount = () => {
     if (unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) <= 0) {
@@ -89,10 +95,9 @@ const UnitPriceArea: React.FC = () => {
       <Title>Unit Price</Title>
       <div
         style={{
-          display: "flex",
-          gap: "5px",
-          justifyContent: "space-around",
-          minWidth: "100vw",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
         }}
       >
         <LabelledIncrementer
@@ -125,15 +130,6 @@ const UnitPriceArea: React.FC = () => {
           onIncrement={handleAddLuxuryManager}
           onDecrement={handleRemoveLuxuryManager}
         />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "5px",
-          maxWidth: "70vw",
-          justifyContent: "space-around",
-        }}
-      >
         <div style={{ display: "flex" }}>
           <ToggleButton
             label="First to Lower Prices"
@@ -154,6 +150,12 @@ const UnitPriceArea: React.FC = () => {
         >
           <div>${unitPrice.unitPrice}</div>
         </div>
+        <ToggleButton
+          label="Garden"
+          active={hasGarden}
+          onClick={handleHasGarden}
+          activeColor={FoodChainMagnatePalette.businessDevelopment}
+        />
       </div>
     </section>
   );

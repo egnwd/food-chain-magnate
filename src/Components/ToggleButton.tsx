@@ -23,10 +23,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       style={{
         backgroundColor: active ? activeColor : inactiveColor,
         color: textColor,
-        minWidth: "120px",
-        minHeight: "140px",
         margin: 0,
-        flexGrow: 0,
         fontWeight: 700,
       }}
     >

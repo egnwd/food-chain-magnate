@@ -27,9 +27,8 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
     <div
       style={{
         borderRadius: "5px",
-        minWidth: "120px",
-        minHeight: "140px",
-        backgroundColor: activeColor,
+        display: "grid",
+        gridTemplateRows: "3fr",
       }}
     >
       <div
@@ -46,39 +45,30 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "space-around",
+          backgroundColor: activeColor,
+          padding: "5px",
+          borderBottom: "2px solid rgba(0, 0, 0, 0.4)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            flexGrow: 1,
-            padding: "10px 0",
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <button onClick={onDecrement}>◀</button>
-            <span>{counter.toString()}</span>
-            <button onClick={onIncrement}>▶</button>
-          </div>
-        </div>
-        <button
-          onClick={onClick}
-          style={{
-            color: textColor,
-            borderColor: inactiveColor,
-            padding: "10px 0",
-            cursor: "pointer",
-            flexGrow: 1,
-            backgroundColor: toggledBackgroundColor,
-            borderRadius: "0px 0px 5px 5px",
-          }}
-        >
-          Milestone
-        </button>
+        <button onClick={onDecrement}>◀</button>
+        <span>{counter.toString()}</span>
+        <button onClick={onIncrement}>▶</button>
       </div>
+      <button
+        onClick={onClick}
+        style={{
+          color: textColor,
+          borderColor: inactiveColor,
+          padding: "10px 0",
+          cursor: "pointer",
+          flexGrow: 1,
+          backgroundColor: toggledBackgroundColor,
+          borderRadius: "0px 0px 5px 5px",
+        }}
+      >
+        Bonus
+      </button>
     </div>
   );
 };

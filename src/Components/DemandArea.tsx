@@ -85,10 +85,10 @@ const DemandArea: React.FC = () => {
       <Title>Demand</Title>
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          minWidth: "100%",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
+          width: "100%",
         }}
       >
         <IncrementAndToggle

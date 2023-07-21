@@ -6,9 +6,16 @@ type NumberButtonProps = {
   counter: number;
   onIncrement: () => void;
   onDecrement: () => void;
+  activeColor?: string;
 };
 
-const LabelledIncrementer: React.FC<NumberButtonProps> = ({ label, counter, onIncrement, onDecrement }) => {
+const LabelledIncrementer: React.FC<NumberButtonProps> = ({
+  label,
+  counter,
+  onIncrement,
+  onDecrement,
+  activeColor = FoodChainMagnatePalette.discounters,
+}) => {
   return (
     <div
       className="numberCruncher"
@@ -16,10 +23,13 @@ const LabelledIncrementer: React.FC<NumberButtonProps> = ({ label, counter, onIn
         display: "flex",
         flexDirection: "column",
         minWidth: "120px",
-        backgroundColor: FoodChainMagnatePalette.discounters,
+        backgroundColor: activeColor,
       }}
     >
-      <div style={{ backgroundColor: "black", color: "white", borderRadius: "5px 5px 0px 0px" }}>{label}</div>
+      <div style={{ backgroundColor: "black", color: "white", borderRadius: "5px 5px 0px 0px", padding: "5px" }}>
+        {label}
+      </div>
+
       <div
         className="counter"
         style={{
