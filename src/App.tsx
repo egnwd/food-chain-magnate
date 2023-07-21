@@ -23,29 +23,26 @@ const theme = createTheme({
 
 const App: React.FC = () => (
   <div className="App">
-    <header className="App-header">
-      <ThemeProvider theme={theme}>
-        <HouseDemandProvider>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: "100vw",
-              height: "100vh",
-              padding: "20px 30px",
-              boxSizing: "border-box",
-            }}
-          >
-            <UnitPriceArea />
-            <DemandArea />
-            <RevenueBonusArea />
-            <div style={{ height: "5em" }} />
-            <Price />
-          </div>
-        </HouseDemandProvider>
-      </ThemeProvider>
-    </header>
+    <ThemeProvider theme={theme}>
+      <HouseDemandProvider>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            width: "100vw",
+            height: "calc(100vh - 5em)",
+            padding: "20px 30px",
+            boxSizing: "border-box",
+          }}
+        >
+          <UnitPriceArea />
+          <DemandArea />
+          <RevenueBonusArea />
+        </div>
+        <Price />
+      </HouseDemandProvider>
+    </ThemeProvider>
   </div>
 );
 

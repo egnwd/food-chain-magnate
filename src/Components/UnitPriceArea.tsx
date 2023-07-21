@@ -101,31 +101,19 @@ const UnitPriceArea: React.FC = () => {
         }}
       >
         <LabelledIncrementer
-          label={
-            <span>
-              Pricing<br></br>Managers
-            </span>
-          }
+          label="Pricing Managers"
           counter={unitPrice.pricingManagers}
           onIncrement={handleAddPricingManager}
           onDecrement={handleRemovePricingManager}
         />
         <LabelledIncrementer
-          label={
-            <span>
-              Discount<br></br>Managers
-            </span>
-          }
+          label="Discount Managers"
           counter={unitPrice.discountManagers}
           onIncrement={handleAddDiscountManager}
           onDecrement={handleRemoveDiscountManager}
         />
         <LabelledIncrementer
-          label={
-            <span>
-              Luxury<br></br>Managers
-            </span>
-          }
+          label="Luxury Managers"
           counter={unitPrice.luxuryManagers}
           onIncrement={handleAddLuxuryManager}
           onDecrement={handleRemoveLuxuryManager}
