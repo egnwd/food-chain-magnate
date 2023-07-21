@@ -1,15 +1,11 @@
 import React, { useContext } from "react";
-import NumberButton from "./NumberButton";
 import { HouseDemandContext } from "./HouseDemandContext";
 import Title from "./Title";
-import ToggleButton from "./ToggleButton";
-import SodaIcon from "../Icons/SodaIcon";
-import BurgerIcon from "../Icons/BurgerIcon";
-import PizzaIcon from "../Icons/PizzaIcon";
+import IncrementAndToggle from "./IncrementAndToggle";
+import FoodChainMagnatePalette from "./ColorPalette";
 
 const DemandArea: React.FC = () => {
-  const { demand, setDemand, milestones, setMilestones } =
-    useContext(HouseDemandContext);
+  const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDrink = () => {
     if (demand.total >= 5) {
@@ -87,48 +83,40 @@ const DemandArea: React.FC = () => {
   return (
     <section>
       <Title>Demand</Title>
-      <div className="menuItem">
-        <SodaIcon />
-        <NumberButton
-          label={demand.drinks.toString()}
-          onIncrement={handleAddDrink}
-          onDecrement={handleRemoveDrink}
-          horizontal
-        />
-        <ToggleButton
-          label="+$5 on Drinks"
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
+          width: "100%",
+        }}
+      >
+        <IncrementAndToggle
+          label="Drinks"
           active={milestones.hasDrinkBonus}
           onClick={handleDrinkBonus}
+          counter={demand.drinks}
+          onIncrement={handleAddDrink}
+          onDecrement={handleRemoveDrink}
+          activeColor={FoodChainMagnatePalette.defaultActive}
         />
-      </div>
-      <div className="menuItem">
-        <BurgerIcon />
-
-        <NumberButton
-          label={demand.burgers.toString()}
-          onIncrement={handleAddBurgers}
-          onDecrement={handleRemoveBurgers}
-          horizontal
-        />
-        <ToggleButton
-          label="+$5 on Burger"
+        <IncrementAndToggle
+          label="Burgers"
           active={milestones.hasBurgerBonus}
           onClick={handleBurgerBonus}
+          counter={demand.burgers}
+          onIncrement={handleAddBurgers}
+          onDecrement={handleRemoveBurgers}
+          activeColor={FoodChainMagnatePalette.defaultActive}
         />
-      </div>
-      <div className="menuItem">
-        <PizzaIcon />
-
-        <NumberButton
-          label={demand.pizza.toString()}
-          onIncrement={handleAddPizza}
-          onDecrement={handleRemovePizza}
-          horizontal
-        />
-        <ToggleButton
-          label="+$5 on Pizza"
+        <IncrementAndToggle
+          label="Pizzas"
           active={milestones.hasPizzaBonus}
           onClick={handlePizzaBonus}
+          counter={demand.pizza}
+          onIncrement={handleAddPizza}
+          onDecrement={handleRemovePizza}
+          activeColor={FoodChainMagnatePalette.defaultActive}
         />
       </div>
     </section>

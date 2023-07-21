@@ -9,9 +9,7 @@ const Title: React.FC<TitleProps> = ({ children }) => (
     style={{
       display: "flex",
       justifyContent: "start",
-      minWidth: "100vw",
-      padding: "0 15px",
-      boxSizing: "border-box",
+      width: "100%",
     }}
   >
     <h2 data-text={children}>{children}</h2>

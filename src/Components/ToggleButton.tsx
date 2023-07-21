@@ -23,6 +23,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       style={{
         backgroundColor: active ? activeColor : inactiveColor,
         color: textColor,
+        margin: 0,
+        fontWeight: 700,
       }}
     >
       {label}

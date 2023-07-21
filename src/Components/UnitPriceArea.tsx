@@ -1,21 +1,42 @@
 import React, { useContext } from "react";
-import NumberButton from "./NumberButton";
+import LabelledIncrementer from "./LabelledIncrementer";
 import { HouseDemandContext } from "./HouseDemandContext";
 import Title from "./Title";
 import ToggleButton from "./ToggleButton";
 import FoodChainMagnatePalette from "./ColorPalette";
 
 const UnitPriceArea: React.FC = () => {
-  const { unitPrice, setUnitPrice, milestones, setMilestones } =
+  const { unitPrice, setUnitPrice, milestones, setMilestones, hasGarden, setHasGarden } =
     useContext(HouseDemandContext);
 
-  const handleAddDiscountManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0) {
+  const handleAddPricingManager = () => {
+    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.pricingManagers >= 12) {
       return;
     }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 1,
+      pricingManagers: unitPrice.pricingManagers + 1,
+    });
+  };
+
+  const handleRemovePricingManager = () => {
+    if (unitPrice.pricingManagers > 0) {
+      setUnitPrice({
+        ...unitPrice,
+        unitPrice: unitPrice.unitPrice + 1,
+        pricingManagers: unitPrice.pricingManagers - 1,
+      });
+    }
+  };
+
+  const handleAddDiscountManager = () => {
+    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.discountManagers >= 6) {
+      return;
+    }
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice - 3,
       discountManagers: unitPrice.discountManagers + 1,
     });
   };
@@ -24,34 +45,16 @@ const UnitPriceArea: React.FC = () => {
     if (unitPrice.discountManagers > 0) {
       setUnitPrice({
         ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 1,
+        unitPrice: unitPrice.unitPrice + 3,
         discountManagers: unitPrice.discountManagers - 1,
       });
     }
   };
 
-  const handleAddDiscountDirector = () => {
-    if (unitPrice.unitPrice - 3 <= 0) {
+  const handleAddLuxuryManager = () => {
+    if (unitPrice.luxuryManagers >= 3) {
       return;
     }
-    setUnitPrice({
-      ...unitPrice,
-      unitPrice: unitPrice.unitPrice - 3,
-      discountDirectors: unitPrice.discountDirectors + 1,
-    });
-  };
-
-  const handleRemoveDiscountDirector = () => {
-    if (unitPrice.discountDirectors > 0) {
-      setUnitPrice({
-        ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 3,
-        discountDirectors: unitPrice.discountDirectors - 1,
-      });
-    }
-  };
-
-  const handleAddLuxuryManager = () => {
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + 10,
@@ -71,17 +74,15 @@ const UnitPriceArea: React.FC = () => {
     });
   };
 
+  const handleHasGarden = () => setHasGarden(!hasGarden);
+
   const handlePermanentDiscount = () => {
-    if (
-      unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) <=
-      0
-    ) {
+    if (unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) <= 0) {
       return;
     }
     setUnitPrice({
       ...unitPrice,
-      unitPrice:
-        unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1),
+      unitPrice: unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1),
     });
     setMilestones({
       ...milestones,
@@ -94,38 +95,68 @@ const UnitPriceArea: React.FC = () => {
       <Title>Unit Price</Title>
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-          alignItems: "center",
-          minWidth: "100vw",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
         }}
       >
-        <NumberButton
-          label="- $1"
+        <LabelledIncrementer
+          label={
+            <span>
+              Pricing<br></br>Managers
+            </span>
+          }
+          counter={unitPrice.pricingManagers}
+          onIncrement={handleAddPricingManager}
+          onDecrement={handleRemovePricingManager}
+        />
+        <LabelledIncrementer
+          label={
+            <span>
+              Discount<br></br>Managers
+            </span>
+          }
+          counter={unitPrice.discountManagers}
           onIncrement={handleAddDiscountManager}
           onDecrement={handleRemoveDiscountManager}
         />
-        <NumberButton
-          label="- $3"
-          onIncrement={handleAddDiscountDirector}
-          onDecrement={handleRemoveDiscountDirector}
-        />
-        <div style={{ minWidth: "3em", fontSize: "2em", fontWeight: 700 }}>
-          ${unitPrice.unitPrice}
-        </div>
-        <NumberButton
-          label="+ $10"
+        <LabelledIncrementer
+          label={
+            <span>
+              Luxury<br></br>Managers
+            </span>
+          }
+          counter={unitPrice.luxuryManagers}
           onIncrement={handleAddLuxuryManager}
           onDecrement={handleRemoveLuxuryManager}
         />
+        <div style={{ display: "flex" }}>
+          <ToggleButton
+            label="First to Lower Prices"
+            active={milestones.hasPermanentDiscount}
+            onClick={handlePermanentDiscount}
+            activeColor={FoodChainMagnatePalette.discounters}
+          />
+        </div>
+        <div
+          style={{
+            minWidth: "3em",
+            fontSize: "2em",
+            fontWeight: 700,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div>${unitPrice.unitPrice}</div>
+        </div>
+        <ToggleButton
+          label="Garden"
+          active={hasGarden}
+          onClick={handleHasGarden}
+          activeColor={FoodChainMagnatePalette.businessDevelopment}
+        />
       </div>
-      <ToggleButton
-        label="- $1 Sale!"
-        active={milestones.hasPermanentDiscount}
-        onClick={handlePermanentDiscount}
-        activeColor={FoodChainMagnatePalette.discounters}
-      />
     </section>
   );
 };

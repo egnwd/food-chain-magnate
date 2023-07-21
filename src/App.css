@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 
 /* Box sizing rules */
 *,
@@ -23,8 +23,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -63,9 +63,9 @@ select {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -104,7 +104,7 @@ select {
 }
 
 h1 {
-  font-family: 'Courgette', cursive;
+  font-family: "Courgette", cursive;
   color: rgb(192, 55, 51);
   font-weight: 700;
   font-size: 4.4vh;
@@ -114,7 +114,7 @@ h1 {
   -webkit-text-fill-color: rgb(192, 55, 51);
   -moz-text-stroke-color: rgb(253, 241, 217);
   -webkit-text-stroke-color: rgb(253, 241, 217);
-  -moz-text-stroke-width: 2px;  
+  -moz-text-stroke-width: 2px;
   -webkit-text-stroke-width: 2px;
   paint-order: stroke fill;
   text-shadow:
@@ -128,7 +128,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Courgette', cursive;
+  font-family: "Courgette", cursive;
   color: rgb(42, 39, 39);
   font-weight: 700;
   font-size: 3vh;
@@ -138,46 +138,10 @@ h2 {
 }
 
 section {
-  min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-}
-
-/*
-h1:after {
-  color: rgb(42, 39, 39);
-  content: attr(data-text);
-  position: absolute;
-  -webkit-text-stroke: 5px rgb(42, 39, 39);
-  left: 0;
-  z-index: -2;
-  font-size: 1em;
-}*/
-
-.menuItem {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  min-width: 100vw;
-  padding: 10px 0;
-  box-sizing: border-box;
-}
-
-.menuItem > .MuiSvgIcon-root {
-  margin-right: 20px;
-  flex-grow: 1;
-  font-size: 3em;
-}
-
-.menuItem > .numberCruncher {
-  flex-grow: 1;
-}
-
-.menuItem > .togglable {
-  flex-grow: 1;
 }
 
 .togglable {
@@ -198,11 +162,17 @@ button:focus {
   display: flex;
   flex-direction: column;
   background: rgb(151, 213, 208);
-  padding: 5px;
   border-radius: 5px;
   min-width: 3em;
   font: cursive;
   font-weight: 700;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: rgb(42, 39, 39);
 }
 
 .numberCruncher button {
@@ -210,18 +180,6 @@ button:focus {
   cursor: pointer;
   background: none;
   color: rgb(42, 39, 39);
-}
-
-.price {
-  position: fixed;
-  bottom: 0;
-  height: 5em;
-  min-width: 100vw;
-  background-color: rgb(253, 241, 217);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 20px;
 }
 
 .App-link {

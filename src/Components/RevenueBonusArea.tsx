@@ -1,25 +1,13 @@
 import React, { useContext } from "react";
 import ToggleButton from "./ToggleButton";
-import NumberButton from "./NumberButton";
+import LabelledIncrementer from "./LabelledIncrementer";
 import FoodChainMagnatePalette from "./ColorPalette";
 import { HouseDemandContext } from "./HouseDemandContext";
 import Title from "./Title";
 
 const RevenueBonusArea: React.FC = () => {
-  const {
-    hasGarden,
-    setHasGarden,
-    hasCFO,
-    setHasCFO,
-    milestones,
-    setMilestones,
-    numberWaitresses,
-    setNumberWaitresses,
-  } = useContext(HouseDemandContext);
-
-  const handleHasGarden = () => {
-    setHasGarden(!hasGarden);
-  };
+  const { hasCFO, setHasCFO, milestones, setMilestones, numberWaitresses, setNumberWaitresses } =
+    useContext(HouseDemandContext);
 
   const handleHasCFO = () => {
     setHasCFO(!hasCFO);
@@ -46,28 +34,24 @@ const RevenueBonusArea: React.FC = () => {
   return (
     <section>
       <Title>Revenue Bonuses</Title>
-      <div style={{ display: "flex" }}>
-        <ToggleButton
-          label="Garden"
-          active={hasGarden}
-          onClick={handleHasGarden}
-          activeColor={FoodChainMagnatePalette.businessDevelopment}
-        />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%" }}>
         <ToggleButton
           label="CFO"
           active={hasCFO}
           onClick={handleHasCFO}
           activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
-        <NumberButton
-          label={numberWaitresses.toString()}
-          onIncrement={handleAddWaitress}
-          onDecrement={handleRemoveWaitress}
-        />
         <ToggleButton
           label="First Waitress"
           active={milestones.hasFirstWaitress}
           onClick={handleHasFirstWaitress}
+          activeColor={FoodChainMagnatePalette.businessDevelopment}
+        />
+        <LabelledIncrementer
+          label={<span>Waitresses</span>}
+          counter={numberWaitresses}
+          onIncrement={handleAddWaitress}
+          onDecrement={handleRemoveWaitress}
           activeColor={FoodChainMagnatePalette.businessDevelopment}
         />
       </div>
