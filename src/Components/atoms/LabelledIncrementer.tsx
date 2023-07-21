@@ -35,6 +35,7 @@ const LabelledIncrementer: React.FC<LabelledIncrementerProps> = ({
           justifyContent: "space-around",
           alignItems: "center",
           padding: "5px 0",
+          cursor: "pointer",
           backgroundColor: activeColor,
         }}
       >

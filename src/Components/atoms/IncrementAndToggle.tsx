@@ -26,10 +26,12 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
   return (
     <div
       style={{
-        display: "grid",
-        gridTemplateRows: "3fr",
+        display: "flex",
+        flexDirection: "column",
         borderRadius: "5px",
         overflow: "hidden",
+        fontWeight: 700,
+        minWidth: "3em",
       }}
     >
       <div
@@ -47,6 +49,7 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
           display: "flex",
           justifyContent: "space-around",
           backgroundColor: activeColor,
+          alignItems: "center",
           padding: "5px",
           borderBottom: "2px solid rgba(0, 0, 0, 0.4)",
         }}
