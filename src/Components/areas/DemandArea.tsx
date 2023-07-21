@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { HouseDemandContext } from "./HouseDemandContext";
-import Title from "./Title";
-import IncrementAndToggle from "./IncrementAndToggle";
-import FoodChainMagnatePalette from "./ColorPalette";
+import { HouseDemandContext } from "../HouseDemandContext";
+import Title from "../atoms/Title";
+import IncrementAndToggle from "../atoms/IncrementAndToggle";
+import FoodChainMagnatePalette from "../ColorPalette";
 
 const DemandArea: React.FC = () => {
   const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
@@ -88,7 +88,6 @@ const DemandArea: React.FC = () => {
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "10px",
-          width: "100%",
         }}
       >
         <IncrementAndToggle

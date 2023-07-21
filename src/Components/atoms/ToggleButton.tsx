@@ -1,5 +1,5 @@
 import React from "react";
-import FoodChainMagnatePalette from "./ColorPalette";
+import FoodChainMagnatePalette from "../ColorPalette";
 
 type ToggleButtonProps = {
   label: string;

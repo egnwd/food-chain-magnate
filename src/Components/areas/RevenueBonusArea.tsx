@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import ToggleButton from "./ToggleButton";
-import LabelledIncrementer from "./LabelledIncrementer";
-import FoodChainMagnatePalette from "./ColorPalette";
-import { HouseDemandContext } from "./HouseDemandContext";
-import Title from "./Title";
+import ToggleButton from "../atoms/ToggleButton";
+import LabelledIncrementer from "../atoms/LabelledIncrementer";
+import FoodChainMagnatePalette from "../ColorPalette";
+import { HouseDemandContext } from "../HouseDemandContext";
+import Title from "../atoms/Title";
 
 const RevenueBonusArea: React.FC = () => {
   const { hasCFO, setHasCFO, milestones, setMilestones, numberWaitresses, setNumberWaitresses } =
@@ -34,7 +34,7 @@ const RevenueBonusArea: React.FC = () => {
   return (
     <section>
       <Title>Revenue Bonuses</Title>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
         <ToggleButton
           label="CFO"
           active={hasCFO}
