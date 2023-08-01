@@ -1,28 +1,23 @@
 import React from "react";
 import FoodChainMagnatePalette from "../ColorPalette";
+import { IIncrementable, IToggleable, ILabelledButton } from "./types";
+import Incrementer from "./Incrementer";
+import ToggleButton from "./ToggleButton";
+import Label from "./Label";
 
-type NumberButtonProps = {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-  counter: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-  activeColor?: string;
-};
+type NumberButtonProps = ILabelledButton & IIncrementable & IToggleable;
 
 const IncrementAndToggle: React.FC<NumberButtonProps> = ({
   label,
   active,
   onClick,
   counter,
+  atMaximum,
+  atMinimum,
   onIncrement,
   onDecrement,
   activeColor = FoodChainMagnatePalette.defaultActive,
 }) => {
-  const inactiveColor = FoodChainMagnatePalette.defaultInactive;
-  const toggledBackgroundColor = active ? activeColor : inactiveColor;
-  const textColor = FoodChainMagnatePalette.defaultText;
   return (
     <div
       style={{
@@ -34,16 +29,7 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
         minWidth: "3em",
       }}
     >
-      <div
-        style={{
-          backgroundColor: "black",
-          color: "white",
-          fontWeight: "700",
-          padding: "5px 0",
-        }}
-      >
-        {label}
-      </div>
+      <Label label={label} />
       <div
         style={{
           display: "flex",
@@ -54,23 +40,15 @@ const IncrementAndToggle: React.FC<NumberButtonProps> = ({
           borderBottom: "2px solid rgba(0, 0, 0, 0.4)",
         }}
       >
-        <button onClick={onDecrement}>◀</button>
-        <span>{counter.toString()}</span>
-        <button onClick={onIncrement}>▶</button>
+        <Incrementer
+          counter={counter}
+          onDecrement={onDecrement}
+          onIncrement={onIncrement}
+          atMaximum={atMaximum}
+          atMinimum={atMinimum}
+        />
       </div>
-      <button
-        onClick={onClick}
-        style={{
-          color: textColor,
-          borderColor: inactiveColor,
-          padding: "5px 0",
-          cursor: "pointer",
-          flexGrow: 1,
-          backgroundColor: toggledBackgroundColor,
-        }}
-      >
-        Bonus
-      </button>
+      <ToggleButton label="Bonus" onClick={onClick} activeColor={activeColor} active={active} rounded={false} />
     </div>
   );
 };

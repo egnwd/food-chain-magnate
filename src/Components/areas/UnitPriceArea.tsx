@@ -10,9 +10,6 @@ const UnitPriceArea: React.FC = () => {
     useContext(HouseDemandContext);
 
   const handleAddPricingManager = () => {
-    if (unitPrice.pricingManagers >= 12) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 1,
@@ -21,10 +18,6 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemovePricingManager = () => {
-    if (unitPrice.pricingManagers <= 0) {
-      return;
-    }
-
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + 1,
@@ -33,9 +26,6 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleAddDiscountManager = () => {
-    if (unitPrice.discountManagers >= 6) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 3,
@@ -44,10 +34,6 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemoveDiscountManager = () => {
-    if (unitPrice.discountManagers <= 0) {
-      return;
-    }
-
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + 3,
@@ -56,9 +42,6 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleAddLuxuryManager = () => {
-    if (unitPrice.luxuryManagers >= 3) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + 10,
@@ -67,10 +50,6 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemoveLuxuryManager = () => {
-    if (unitPrice.luxuryManagers <= 0) {
-      return;
-    }
-
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 10,
@@ -91,6 +70,8 @@ const UnitPriceArea: React.FC = () => {
     });
   };
 
+  const atNumber = (limit: number) => (counter: number) => counter == limit;
+
   return (
     <section>
       <Title>Unit Price</Title>
@@ -106,18 +87,24 @@ const UnitPriceArea: React.FC = () => {
           counter={unitPrice.pricingManagers}
           onIncrement={handleAddPricingManager}
           onDecrement={handleRemovePricingManager}
+          atMinimum={atNumber(0)}
+          atMaximum={atNumber(12)}
         />
         <LabelledIncrementer
           label="Discount Managers"
           counter={unitPrice.discountManagers}
           onIncrement={handleAddDiscountManager}
           onDecrement={handleRemoveDiscountManager}
+          atMinimum={atNumber(0)}
+          atMaximum={atNumber(6)}
         />
         <LabelledIncrementer
           label="Luxury Managers"
           counter={unitPrice.luxuryManagers}
           onIncrement={handleAddLuxuryManager}
           onDecrement={handleRemoveLuxuryManager}
+          atMinimum={atNumber(0)}
+          atMaximum={atNumber(3)}
         />
         <div style={{ display: "flex" }}>
           <ToggleButton
