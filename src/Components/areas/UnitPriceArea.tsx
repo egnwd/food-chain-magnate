@@ -10,7 +10,7 @@ const UnitPriceArea: React.FC = () => {
     useContext(HouseDemandContext);
 
   const handleAddPricingManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.pricingManagers >= 12) {
+    if (unitPrice.pricingManagers >= 12) {
       return;
     }
     setUnitPrice({
@@ -21,17 +21,19 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemovePricingManager = () => {
-    if (unitPrice.pricingManagers > 0) {
-      setUnitPrice({
-        ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 1,
-        pricingManagers: unitPrice.pricingManagers - 1,
-      });
+    if (unitPrice.pricingManagers <= 0) {
+      return;
     }
+
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice + 1,
+      pricingManagers: unitPrice.pricingManagers - 1,
+    });
   };
 
   const handleAddDiscountManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.discountManagers >= 6) {
+    if (unitPrice.discountManagers >= 6) {
       return;
     }
     setUnitPrice({
@@ -42,13 +44,15 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemoveDiscountManager = () => {
-    if (unitPrice.discountManagers > 0) {
-      setUnitPrice({
-        ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 3,
-        discountManagers: unitPrice.discountManagers - 1,
-      });
+    if (unitPrice.discountManagers <= 0) {
+      return;
     }
+
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice + 3,
+      discountManagers: unitPrice.discountManagers - 1,
+    });
   };
 
   const handleAddLuxuryManager = () => {
@@ -63,7 +67,7 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemoveLuxuryManager = () => {
-    if (unitPrice.unitPrice - 10 <= 0 || unitPrice.luxuryManagers <= 0) {
+    if (unitPrice.luxuryManagers <= 0) {
       return;
     }
 
@@ -77,9 +81,6 @@ const UnitPriceArea: React.FC = () => {
   const handleHasGarden = () => setHasGarden(!hasGarden);
 
   const handlePermanentDiscount = () => {
-    if (unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) <= 0) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1),
