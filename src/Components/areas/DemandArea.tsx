@@ -8,9 +8,6 @@ const DemandArea: React.FC = () => {
   const { demand, setDemand, milestones, setMilestones } = useContext(HouseDemandContext);
 
   const handleAddDrink = () => {
-    if (demand.total >= 5) {
-      return;
-    }
     setDemand({
       ...demand,
       drinks: demand.drinks + 1,
@@ -19,9 +16,6 @@ const DemandArea: React.FC = () => {
   };
 
   const handleRemoveDrink = () => {
-    if (demand.drinks <= 0) {
-      return;
-    }
     setDemand({
       ...demand,
       drinks: demand.drinks - 1,
@@ -30,9 +24,6 @@ const DemandArea: React.FC = () => {
   };
 
   const handleAddBurgers = () => {
-    if (demand.total >= 5) {
-      return;
-    }
     setDemand({
       ...demand,
       burgers: demand.burgers + 1,
@@ -41,9 +32,6 @@ const DemandArea: React.FC = () => {
   };
 
   const handleRemoveBurgers = () => {
-    if (demand.burgers <= 0) {
-      return;
-    }
     setDemand({
       ...demand,
       burgers: demand.burgers - 1,
@@ -52,16 +40,10 @@ const DemandArea: React.FC = () => {
   };
 
   const handleAddPizza = () => {
-    if (demand.total >= 5) {
-      return;
-    }
     setDemand({ ...demand, pizza: demand.pizza + 1, total: demand.total + 1 });
   };
 
   const handleRemovePizza = () => {
-    if (demand.pizza <= 0) {
-      return;
-    }
     setDemand({ ...demand, pizza: demand.pizza - 1, total: demand.total - 1 });
   };
 
@@ -79,6 +61,9 @@ const DemandArea: React.FC = () => {
   const handlePizzaBonus = () => {
     setMilestones({ ...milestones, hasPizzaBonus: !milestones.hasPizzaBonus });
   };
+
+  const atZero = (counter: number) => counter == 0;
+  const atGlobalLimit = () => demand.total >= 5;
 
   return (
     <section>
@@ -98,6 +83,8 @@ const DemandArea: React.FC = () => {
           onIncrement={handleAddDrink}
           onDecrement={handleRemoveDrink}
           activeColor={FoodChainMagnatePalette.defaultActive}
+          atMinimum={atZero}
+          atMaximum={atGlobalLimit}
         />
         <IncrementAndToggle
           label="Burgers"
@@ -107,6 +94,8 @@ const DemandArea: React.FC = () => {
           onIncrement={handleAddBurgers}
           onDecrement={handleRemoveBurgers}
           activeColor={FoodChainMagnatePalette.defaultActive}
+          atMinimum={atZero}
+          atMaximum={atGlobalLimit}
         />
         <IncrementAndToggle
           label="Pizzas"
@@ -116,6 +105,8 @@ const DemandArea: React.FC = () => {
           onIncrement={handleAddPizza}
           onDecrement={handleRemovePizza}
           activeColor={FoodChainMagnatePalette.defaultActive}
+          atMinimum={atZero}
+          atMaximum={atGlobalLimit}
         />
       </div>
     </section>

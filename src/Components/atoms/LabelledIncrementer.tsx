@@ -1,19 +1,18 @@
 import React from "react";
 import FoodChainMagnatePalette from "../ColorPalette";
+import { IIncrementable, ILabelledButton } from "./types";
+import Incrementer from "./Incrementer";
+import Label from "./Label";
 
-type LabelledIncrementerProps = {
-  label: string;
-  counter: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-  activeColor?: string;
-};
+type LabelledIncrementerProps = ILabelledButton & IIncrementable;
 
 const LabelledIncrementer: React.FC<LabelledIncrementerProps> = ({
   label,
   counter,
   onIncrement,
   onDecrement,
+  atMaximum,
+  atMinimum,
   activeColor = FoodChainMagnatePalette.discounters,
 }) => {
   return (
@@ -27,7 +26,7 @@ const LabelledIncrementer: React.FC<LabelledIncrementerProps> = ({
         minWidth: "3em",
       }}
     >
-      <div style={{ backgroundColor: "black", color: "white", padding: "5px" }}>{label}</div>
+      <Label label={label} />
       <div
         style={{
           display: "flex",
@@ -39,9 +38,13 @@ const LabelledIncrementer: React.FC<LabelledIncrementerProps> = ({
           backgroundColor: activeColor,
         }}
       >
-        <button onClick={onDecrement}>◀</button>
-        <span>{counter.toString()}</span>
-        <button onClick={onIncrement}>▶</button>
+        <Incrementer
+          counter={counter}
+          onDecrement={onDecrement}
+          onIncrement={onIncrement}
+          atMaximum={atMaximum}
+          atMinimum={atMinimum}
+        />
       </div>
     </div>
   );

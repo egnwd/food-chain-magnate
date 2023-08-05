@@ -10,9 +10,6 @@ const UnitPriceArea: React.FC = () => {
     useContext(HouseDemandContext);
 
   const handleAddPricingManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.pricingManagers >= 12) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 1,
@@ -21,19 +18,14 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemovePricingManager = () => {
-    if (unitPrice.pricingManagers > 0) {
-      setUnitPrice({
-        ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 1,
-        pricingManagers: unitPrice.pricingManagers - 1,
-      });
-    }
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice + 1,
+      pricingManagers: unitPrice.pricingManagers - 1,
+    });
   };
 
   const handleAddDiscountManager = () => {
-    if (unitPrice.unitPrice - 1 <= 0 || unitPrice.discountManagers >= 6) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 3,
@@ -42,19 +34,14 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemoveDiscountManager = () => {
-    if (unitPrice.discountManagers > 0) {
-      setUnitPrice({
-        ...unitPrice,
-        unitPrice: unitPrice.unitPrice + 3,
-        discountManagers: unitPrice.discountManagers - 1,
-      });
-    }
+    setUnitPrice({
+      ...unitPrice,
+      unitPrice: unitPrice.unitPrice + 3,
+      discountManagers: unitPrice.discountManagers - 1,
+    });
   };
 
   const handleAddLuxuryManager = () => {
-    if (unitPrice.luxuryManagers >= 3) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + 10,
@@ -63,10 +50,6 @@ const UnitPriceArea: React.FC = () => {
   };
 
   const handleRemoveLuxuryManager = () => {
-    if (unitPrice.unitPrice - 10 <= 0 || unitPrice.luxuryManagers <= 0) {
-      return;
-    }
-
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice - 10,
@@ -77,9 +60,6 @@ const UnitPriceArea: React.FC = () => {
   const handleHasGarden = () => setHasGarden(!hasGarden);
 
   const handlePermanentDiscount = () => {
-    if (unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1) <= 0) {
-      return;
-    }
     setUnitPrice({
       ...unitPrice,
       unitPrice: unitPrice.unitPrice + (!milestones.hasPermanentDiscount ? -1 : 1),
@@ -89,6 +69,8 @@ const UnitPriceArea: React.FC = () => {
       hasPermanentDiscount: !milestones.hasPermanentDiscount,
     });
   };
+
+  const atNumber = (limit: number) => (counter: number) => counter == limit;
 
   return (
     <section>
@@ -105,18 +87,24 @@ const UnitPriceArea: React.FC = () => {
           counter={unitPrice.pricingManagers}
           onIncrement={handleAddPricingManager}
           onDecrement={handleRemovePricingManager}
+          atMinimum={atNumber(0)}
+          atMaximum={atNumber(12)}
         />
         <LabelledIncrementer
           label="Discount Managers"
           counter={unitPrice.discountManagers}
           onIncrement={handleAddDiscountManager}
           onDecrement={handleRemoveDiscountManager}
+          atMinimum={atNumber(0)}
+          atMaximum={atNumber(6)}
         />
         <LabelledIncrementer
           label="Luxury Managers"
           counter={unitPrice.luxuryManagers}
           onIncrement={handleAddLuxuryManager}
           onDecrement={handleRemoveLuxuryManager}
+          atMinimum={atNumber(0)}
+          atMaximum={atNumber(3)}
         />
         <div style={{ display: "flex" }}>
           <ToggleButton
