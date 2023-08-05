@@ -6,7 +6,6 @@ type Milestones = {
   hasBurgerBonus: boolean;
   hasPizzaBonus: boolean;
   hasPermanentDiscount: boolean;
-  hasFirstWaitress: boolean;
 };
 
 type UnitPrice = {
@@ -14,6 +13,7 @@ type UnitPrice = {
   discountManagers: number;
   luxuryManagers: number;
   unitPrice: number;
+  distance: number;
 };
 
 type Demand = {
@@ -26,10 +26,6 @@ type Demand = {
 export type HouseDemand = {
   hasGarden: boolean;
   setHasGarden: React.Dispatch<React.SetStateAction<boolean>>;
-  hasCFO: boolean;
-  setHasCFO: React.Dispatch<React.SetStateAction<boolean>>;
-  numberWaitresses: number;
-  setNumberWaitresses: React.Dispatch<React.SetStateAction<number>>;
   milestones: Milestones;
   setMilestones: React.Dispatch<React.SetStateAction<Milestones>>;
   unitPrice: UnitPrice;
@@ -40,20 +36,18 @@ export type HouseDemand = {
 
 export const HouseDemandContext = createContext<HouseDemand>({
   hasGarden: false,
-  hasCFO: false,
-  numberWaitresses: 0,
   milestones: {
     hasDrinkBonus: false,
     hasBurgerBonus: false,
     hasPizzaBonus: false,
     hasPermanentDiscount: false,
-    hasFirstWaitress: false,
   },
   unitPrice: {
     pricingManagers: 0,
     discountManagers: 0,
     luxuryManagers: 0,
     unitPrice: 10,
+    distance: 0,
   },
   demand: {
     drinks: 0,
@@ -62,8 +56,6 @@ export const HouseDemandContext = createContext<HouseDemand>({
     total: 0,
   },
   setHasGarden: () => {},
-  setHasCFO: () => {},
-  setNumberWaitresses: () => {},
   setMilestones: () => {},
   setUnitPrice: () => {},
   setDemand: () => {},
@@ -79,7 +71,6 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
     hasBurgerBonus: false,
     hasPizzaBonus: false,
     hasPermanentDiscount: false,
-    hasFirstWaitress: false,
   });
 
   const [unitPrice, setUnitPrice] = useState<UnitPrice>({
@@ -87,6 +78,7 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
     discountManagers: 0,
     luxuryManagers: 0,
     unitPrice: 10,
+    distance: 0,
   });
 
   const [demand, setDemand] = useState<Demand>({
@@ -97,10 +89,6 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
   });
 
   const [hasGarden, setHasGarden] = useState<boolean>(false);
-
-  const [hasCFO, setHasCFO] = useState<boolean>(false);
-
-  const [numberWaitresses, setNumberWaitresses] = useState<number>(0);
 
   return (
     <HouseDemandContext.Provider
@@ -113,10 +101,6 @@ export const HouseDemandProvider: React.FC<HouseDemandProviderProps> = ({ childr
         setDemand,
         hasGarden,
         setHasGarden,
-        hasCFO,
-        setHasCFO,
-        numberWaitresses,
-        setNumberWaitresses,
       }}
     >
       {children}

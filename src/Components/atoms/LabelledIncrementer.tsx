@@ -31,6 +31,7 @@ const LabelledIncrementer: React.FC<LabelledIncrementerProps> = ({
         style={{
           display: "flex",
           flexDirection: "row",
+          flexGrow: 1,
           justifyContent: "space-around",
           alignItems: "center",
           padding: "5px 0",
