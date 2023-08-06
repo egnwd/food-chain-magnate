@@ -1,21 +1,7 @@
 import React, { useContext } from "react";
 import { HouseDemand, HouseDemandContext } from "./HouseDemandContext";
 
-type CalculatedPrice = {
-  subTotal: number;
-  waitressBonus: number;
-  cfoBonus: number;
-  total: number;
-};
-
-function CalculatePrice({
-  milestones,
-  demand,
-  unitPrice,
-  hasGarden,
-  hasCFO,
-  numberWaitresses,
-}: HouseDemand): CalculatedPrice {
+function CalculatePrice({ milestones, demand, unitPrice, hasGarden }: HouseDemand): number {
   const numItems = demand.total;
   const houseMultiplier = hasGarden ? 2 : 1;
   const totalItemPrice = numItems * (unitPrice.unitPrice * houseMultiplier);
@@ -24,18 +10,12 @@ function CalculatePrice({
   const burgerBonus = demand.burgers * (milestones.hasBurgerBonus ? 5 : 0);
   const pizzaBonus = demand.pizza * (milestones.hasPizzaBonus ? 5 : 0);
 
-  const dollarPerWaitress = milestones.hasFirstWaitress ? 5 : 3;
-  const waitressBonus = numberWaitresses * dollarPerWaitress;
-
-  const subTotal = totalItemPrice + drinkBonus + burgerBonus + pizzaBonus;
-  const cfoBonus = hasCFO ? Math.ceil((subTotal + waitressBonus) * 0.5) : 0;
-  const total = subTotal + waitressBonus + cfoBonus;
-  return { subTotal, waitressBonus, cfoBonus, total };
+  return totalItemPrice + drinkBonus + burgerBonus + pizzaBonus;
 }
 
 const Price: React.FC = () => {
   const house = useContext(HouseDemandContext);
-  const prices = CalculatePrice(house);
+  const price = CalculatePrice(house);
   return (
     <div
       style={{
@@ -50,9 +30,7 @@ const Price: React.FC = () => {
         alignItems: "center",
       }}
     >
-      <h1>
-        ${prices.subTotal} + ${prices.waitressBonus} + ${prices.cfoBonus} = ${prices.total}
-      </h1>
+      <h1>${price}</h1>
     </div>
   );
 };

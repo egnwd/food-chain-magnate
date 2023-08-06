@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { DemandArea, UnitPriceArea, RevenueBonusArea } from "./Components/areas";
+import { DemandArea, DistanceArea, UnitPriceArea } from "./Components/areas";
 import { HouseDemandProvider } from "./Components/HouseDemandContext";
 import Price from "./Components/Price";
 import { ThemeProvider, createTheme } from "@mui/material";
@@ -27,16 +27,17 @@ const App: React.FC = () => (
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
+            gap: "30px",
             width: "100vw",
             height: "calc(100vh - 5em)",
             padding: "20px 30px",
             boxSizing: "border-box",
           }}
         >
+          <DistanceArea />
           <UnitPriceArea />
           <DemandArea />
-          <RevenueBonusArea />
         </div>
         <Price />
       </HouseDemandProvider>

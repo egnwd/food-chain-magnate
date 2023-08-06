@@ -20,7 +20,6 @@ dl,
 dd {
   margin: 0;
   color: rgb(42, 39, 39);
-  background-color: rgb(253, 241, 217);
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -39,6 +38,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: rgb(253, 241, 217);
 }
 
 /* A elements that don't have a class get default styles */
@@ -131,4 +131,62 @@ button {
   cursor: pointer;
   background: none;
   color: rgb(42, 39, 39);
+}
+
+.star-twelve {
+  background: rgb(151, 213, 208);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  transform: rotate(45deg);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 80px;
+    background: rgb(151, 213, 208);
+    z-index: -1;
+  }
+
+  &::before {
+    transform: rotate(30deg);
+  }
+
+  &::after {
+    transform: rotate(60deg);
+  }
+
+  & p {
+    transform: rotate(-55deg);
+    margin-left: -5px;
+    color: rgb(192, 55, 51);
+    -moz-text-fill-color: rgb(192, 55, 51);
+    -webkit-text-fill-color: rgb(192, 55, 51);
+    -moz-text-stroke-color: rgb(253, 241, 217);
+    -webkit-text-stroke-color: rgb(253, 241, 217);
+    -moz-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 2px;
+    paint-order: stroke fill;
+    text-shadow:
+      -1px -1px 0 rgb(42, 39, 39),
+      -1px 1px 0 rgb(42, 39, 39),
+      1px -1px 0 rgb(42, 39, 39),
+      1px 1px 0 rgb(42, 39, 39),
+      2px 2px 0 rgb(42, 39, 39),
+      3px 3px 0 rgb(42, 39, 39),
+      4px 4px 0 rgb(42, 39, 39);
+    font-size: 6vh;
+    line-height: 6vh;
+    font-weight: 700;
+  }
 }
